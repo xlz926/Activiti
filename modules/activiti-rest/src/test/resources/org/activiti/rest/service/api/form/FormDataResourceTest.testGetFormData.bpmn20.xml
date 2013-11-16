@@ -21,8 +21,7 @@
         <activiti:formProperty id="speaker" variable="SpeakerName" writable="false" />
         <activiti:formProperty id="street" expression="#{address.street}" required="true" />
         <activiti:formProperty id="start" 
-          type="date" 
-          datePattern="dd-MMM-yyyy" />
+          type="date"   datePattern="dd-MMM-yyyy" />
         <activiti:formProperty id="end" name="End" type="date" />
         <activiti:formProperty id="direction" type="enum">
           <activiti:value id="left" name="Go Left" />
