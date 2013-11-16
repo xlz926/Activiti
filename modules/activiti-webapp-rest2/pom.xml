@@ -13,6 +13,7 @@
     <version>5.15-SNAPSHOT</version>
   </parent>
 
+
   <build>
     <plugins>
       <plugin>
@@ -116,9 +117,16 @@
       <groupId>org.activiti</groupId>
       <artifactId>activiti-rest</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-    </dependency>
+      <dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc-jdk5</artifactId>
+				<version>6.0.0</version>
+	 </dependency>
+	  <dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.0 </version>
+		</dependency>
+	
   </dependencies>
 </project>

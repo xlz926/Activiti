@@ -97,7 +97,6 @@ import org.activiti.rest.service.api.repository.ProcessDefinitionIdentityLinkRes
 import org.activiti.rest.service.api.repository.ProcessDefinitionModelResource;
 import org.activiti.rest.service.api.repository.ProcessDefinitionResource;
 import org.activiti.rest.service.api.repository.ProcessDefinitionResourceDataResource;
-import org.activiti.rest.service.api.repository.SimpleWorkflowResource;
 import org.activiti.rest.service.api.runtime.process.ExecutionActiveActivitiesCollectionResource;
 import org.activiti.rest.service.api.runtime.process.ExecutionCollectionResource;
 import org.activiti.rest.service.api.runtime.process.ExecutionQueryResource;
@@ -131,6 +130,7 @@ import org.activiti.rest.service.api.runtime.task.TaskSubTaskCollectionResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableCollectionResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableDataResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableResource;
+import org.activiti.rest.service.api.sophia.task.TaskListResource;
 import org.restlet.routing.Router;
 
 @SuppressWarnings("deprecation")
@@ -296,7 +296,9 @@ public class RestServicesInit {
     router.attach("/management/table/{tableName}", LegacyTableResource.class);
     router.attach("/management/table/{tableName}/data", LegacyTableDataResource.class);
     
-    router.attach("/simple-workflow", SimpleWorkflowResource.class);
+    /*sophia扩展服务*/
+    router.attach("/sophia/tasks", TaskListResource.class);
+    
   }
   
 }

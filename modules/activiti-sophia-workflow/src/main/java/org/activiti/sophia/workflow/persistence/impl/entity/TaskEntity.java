@@ -1,4 +1,4 @@
-package org.activiti.sophia.workflow.persistence.entity;
+package org.activiti.sophia.workflow.persistence.impl.entity;
 
 import java.util.Date;
 

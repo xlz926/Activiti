@@ -2,14 +2,17 @@ package org.activiti.sophia.workflow.service;
 
 import java.util.List;
 
+import org.activiti.engine.impl.AbstractQuery;
+import org.activiti.engine.impl.Page;
+import org.activiti.engine.impl.interceptor.CommandContext;
 import org.activiti.engine.query.Query;
-import org.activiti.sophia.workflow.persistence.mapper.TaskQuery;
+import org.activiti.sophia.workflow.persistence.impl.mapper.TaskQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service("taskQueryService")
-public class TaskQueryService implements Query{
+@Service
+public class TaskQueryService extends AbstractQuery{
 
 	
 	 @Autowired
@@ -47,7 +50,21 @@ public class TaskQueryService implements Query{
 
 	@Override
 	public List listPage(int firstResult, int maxResults) {
+		System.out.println("32222222222");
+		System.out.println(taskQuery.getTaskList().size());
 		 return taskQuery.getTaskList();
+	}
+
+	@Override
+	public long executeCount(CommandContext commandContext) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List executeList(CommandContext commandContext, Page page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

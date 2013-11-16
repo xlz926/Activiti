@@ -573,6 +573,11 @@
       <id>vaadin-addons</id>
       <url>http://maven.vaadin.com/vaadin-addons</url>
     </repository>
+	  <repository>
+            <id>nexus</id>
+            <name>local private nexus</name>
+            <url>http://172.16.8.91:8081/nexus/content/groups/public</url>
+        </repository>
   </repositories>
 
   <pluginRepositories>

@@ -3,8 +3,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Activiti - Simple Workflow</name>
-	<artifactId>activiti-simple-workflow</artifactId>
 
 	<parent>
 		<groupId>org.activiti</groupId>
@@ -12,6 +10,10 @@
 		<relativePath>../..</relativePath>
 		<version>5.15-SNAPSHOT</version>
 	</parent>
+	<name>Activiti - Simple Workflow</name>
+	<artifactId>activiti-simple-workflow</artifactId>
+
+
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

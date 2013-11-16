@@ -1,7 +1,8 @@
 package org.activiti.sophia.workflow.persistence.mapper;
 
 import org.activiti.sophia.workflow.base.SpringTransactionalTest;
-import org.activiti.sophia.workflow.service.TestBean;
+import org.activiti.sophia.workflow.persistence.impl.mapper.TaskQuery;
+import org.activiti.sophia.workflow.service.ServiceFactoryApplication;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,10 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(locations = { "/applicationContext-test.xml" })
 public class TaskQueryTest  extends SpringTransactionalTest {
 
-	
-    @Autowired
-    TaskQuery taskQuery;
-    
 
 	
 	@Test
@@ -22,9 +19,9 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 		
 	     try {
 	    	 
-	    	System.out.println(taskQuery.getTaskList().size());
-	    	TestBean test =new TestBean();
-	    	System.out.println(test.getService());
+	    	//System.out.println(taskQuery.getTaskList().size());
+	    	ServiceFactoryApplication test =new ServiceFactoryApplication();
+	    	System.out.println(test.createTaskQuery());
 	    	//test.createTaskQuery().list();
 	    	
 		} catch (Exception e) {
