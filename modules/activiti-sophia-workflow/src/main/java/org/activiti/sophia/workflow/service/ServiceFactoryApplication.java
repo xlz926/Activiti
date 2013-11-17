@@ -15,9 +15,6 @@ public class ServiceFactoryApplication implements ApplicationContextAware{
 			throws BeansException {
 		this.applicationContext = applicationContext;
 	}
-	public static TaskQueryService createTaskQuery() {
-		return applicationContext.getBean(TaskQueryService.class);
-	}
 }
 	
 	
