@@ -1,10 +1,11 @@
 package org.activiti.sophia.workflow.persistence.mapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.activiti.sophia.workflow.base.SpringTransactionalTest;
-import org.activiti.sophia.workflow.persistence.impl.mapper.TaskQuery;
 import org.activiti.sophia.workflow.service.ServiceFactoryApplication;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 
@@ -21,7 +22,10 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	    	 
 	    	//System.out.println(taskQuery.getTaskList().size());
 	    	ServiceFactoryApplication test =new ServiceFactoryApplication();
-	    	System.out.println(test.createTaskQuery());
+	        Map 	params =new HashMap(); 
+	       // params.put("firstResult", 12);
+	       // params.put("maxResults", 20);
+	    	System.out.println(test.createTaskQuery().listPage(params).size());
 	    	//test.createTaskQuery().list();
 	    	
 		} catch (Exception e) {

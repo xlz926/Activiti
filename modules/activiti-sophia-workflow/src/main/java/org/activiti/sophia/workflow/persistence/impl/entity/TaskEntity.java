@@ -9,7 +9,7 @@ public class TaskEntity {
 	   private String owner;
 	   private String assignee;
 	   private String suspensionState;
-	  private String name;
+	   private String name;
 	   private String description;
 	   private Date createTime; 
 	   private Date dueDate;
