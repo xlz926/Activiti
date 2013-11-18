@@ -11,6 +11,7 @@ define(function(require, exports, module){
 	  seajs.use($this.attr('npp-module'),function(module){
 		      var module =   new module($this);
 		      $this.on("click","[event-click]",function(event){
+		    	  event.preventDefault();
 		    	$.isFunction(module[$(this).attr("event-click")]) && module[$(this).attr("event-click")](event,$(this)[0]);
 		      });
 	   });

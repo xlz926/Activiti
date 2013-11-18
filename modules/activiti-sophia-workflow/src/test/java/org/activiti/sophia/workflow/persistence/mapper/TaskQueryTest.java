@@ -1,6 +1,8 @@
 package org.activiti.sophia.workflow.persistence.mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.activiti.sophia.workflow.base.SpringTransactionalTest;
@@ -26,6 +28,10 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	        Map 	params =new HashMap(); 
 	       params.put("assignee", "kermit");
 	        params.putAll(Pagination.toListPage(0, 30));
+	        
+	        List<String> group = new ArrayList<String>();
+	        group.add("deptLeader");
+	        params.put("candidateGroups", group);
 	      //  new Pagination(params);
 	    	System.out.println(test.createTaskQuery().listPage(params).size());
 	    	//test.createTaskQuery().list();

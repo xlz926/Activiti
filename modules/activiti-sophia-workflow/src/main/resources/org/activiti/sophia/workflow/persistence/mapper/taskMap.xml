@@ -51,6 +51,9 @@
         and RES.NAME_ like #{nameLike}
       </if>
       
+      
+      
+      
        <if test=" candidateGroups != null  || assignee !=null">
          and (
              <if test="assignee !=null"> 
