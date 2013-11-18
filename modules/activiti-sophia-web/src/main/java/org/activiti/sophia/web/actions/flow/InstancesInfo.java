@@ -22,4 +22,6 @@ public class InstancesInfo {
 	public JsonNode getUserList(HttpServletRequest request,Model model,@RequestParam("method") String method){
 		return 	WebRestUtil.restGet(method);
 	}
+	
+
 }

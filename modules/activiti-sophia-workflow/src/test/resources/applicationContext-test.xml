@@ -35,9 +35,10 @@
 			<property name="password" value="${jdbc.password}" />
 		</bean>
        
+       
       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
           <property name="basePackage" value="org.activiti.sophia.workflow.persistence.impl" />
-   	    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+   	      <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
       </bean>
       
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

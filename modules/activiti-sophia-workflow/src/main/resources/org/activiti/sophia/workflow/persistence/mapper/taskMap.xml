@@ -20,8 +20,10 @@
 	
 	
 	<select id="listPage"  parameterType="java.util.Map"  resultMap="taskResultMap">
-	  SELECT RES.* 
+	${limitBefore}
+	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_
 	    <include refid="selectTaskByQuery"/>
+	  ${limitAfter}
 	</select>
 	 
      <select id="count" parameterType="java.util.Map" resultType="long">
@@ -29,9 +31,11 @@
         <include refid="selectTaskByQuery"/>
 	</select>
 	
-	
 	 <sql id="selectTaskByQuery">  
-      from ACT_RU_TASK RES
+     from ACT_RU_TASK RES
+    INNER JOIN ACT_RU_EXECUTION EX ON  EX.ID_=RES.EXECUTION_ID_
+    INNER JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
+    INNER JOIN  ACT_RU_IDENTITYLINK I ON I.TASK_ID_ = RES.ID_
        <include refid="commonSelectTaskWhere"/>
     </sql>
 	
@@ -46,18 +50,35 @@
       <if test="nameLike != null">
         and RES.NAME_ like #{nameLike}
       </if>
-      <if test="description != null">
-        and RES.DESCRIPTION_ = #{description}
-      </if>
-      <if test="descriptionLike != null">
-        and RES.DESCRIPTION_ like #{descriptionLike}
-      </if>
-      <if test="priority != null">
-        and RES.PRIORITY_ = #{priority}
-      </if> 
-       <if test="firstResult != null and maxResults !=null">
-        and rownum &gt; 5
-      </if> 
+      
+       <if test=" candidateGroups != null  || assignee !=null">
+         and (
+             <if test="assignee !=null"> 
+              RES.ASSIGNEE_ = #{assignee}
+                or
+             </if> 
+		      ( RES.ASSIGNEE_ is null
+		        and I.TYPE_ = 'candidate'
+		        and 
+		        ( 
+		          <if test="assignee != null">
+		            I.USER_ID_ = #{assignee}          
+		          </if>
+		          <if test="assignee != null &amp;&amp; candidateGroups != null &amp;&amp; candidateGroups.size() &gt; 0">
+		            or
+		          </if>
+		          <if test="candidateGroups != null &amp;&amp; candidateGroups.size() &gt; 0">
+		            I.GROUP_ID_ IN
+		            <foreach item="group" index="index" collection="candidateGroups" 
+		                     open="(" separator="," close=")">
+		              #{group}
+		            </foreach>
+		          </if>
+		          )
+		        )
+             )
+       </if>
+ 
 	</where>
 	</sql>
 	
