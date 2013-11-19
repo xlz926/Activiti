@@ -27,21 +27,22 @@ public class RestService {
 
 	  protected ObjectMapper objectMapper = new ObjectMapper();
 
-	@RequestMapping(value = "getRestService", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "RestService", method = { RequestMethod.GET })
 	@ResponseBody
 	public JsonNode getRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
 		return 	WebRestUtil.restGet(method);
 	}
 	
-	@RequestMapping(value = "postRestService", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "RestService", method = {  RequestMethod.POST })
 	@ResponseBody
 	public JsonNode postRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
 		  JsonNode	requestNode =objectMapper.createObjectNode();
-		  String result="";
+		  JsonNode result =objectMapper.createObjectNode();
 		try {
 			Object params =request.getParameter("params");
 			 if(params !=null)requestNode = objectMapper.readTree(params.toString());
-			 result = WebRestUtil.restPost(method, requestNode).getText();
+			
+			 result =objectMapper.readTree(WebRestUtil.restPost(method, requestNode).getStream());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,8 +50,7 @@ public class RestService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return 	 null;
+		return 	 result;
 	}
 	
 	

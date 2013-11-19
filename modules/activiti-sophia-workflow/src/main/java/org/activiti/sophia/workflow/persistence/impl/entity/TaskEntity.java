@@ -15,7 +15,7 @@ public class TaskEntity {
 	   private Date dueDate;
 	   private String processInstanceId;
 	   private String businessKey;
-	   private String auditUser;
+	   private String assigneeName;
 	   private String procdefName;
 
 	   public String getProcdefName() {
@@ -82,12 +82,13 @@ public class TaskEntity {
 		this.businessKey = businessKey;
 	}
 
-	public String getAuditUser() {
-		return auditUser;
+
+	public String getAssigneeName() {
+		return assigneeName;
 	}
 
-	public void setAuditUser(String auditUser) {
-		this.auditUser = auditUser;
+	public void setAssigneeName(String assigneeName) {
+		this.assigneeName = assigneeName;
 	}
 
 	public String getName() {

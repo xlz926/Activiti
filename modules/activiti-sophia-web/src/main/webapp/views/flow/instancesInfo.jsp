@@ -79,10 +79,10 @@
 
 <script  type="text/x-jsrender"   id ="templateTmpl">
 <table class="table">
-<thead><tr><th>模板key</th><th>模板名称</th><th>类型</th><th>部署时间</th> </tr></thead>
+<thead><tr><th>流程实例ID</th><th>模板名称</th><th>类型</th><th>部署时间</th> </tr></thead>
 <tbody> 
 {{for data}}
-<tr><td>{{:id}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: deploymentTime }}</td></tr>
+<tr><td>{{:id}}</td><td>{{:businessKey}}</td><td>{{:processDefinitionId}}</td><td>{{: deploymentTime }}</td></tr>
 {{/for}}
 </tbody>
 

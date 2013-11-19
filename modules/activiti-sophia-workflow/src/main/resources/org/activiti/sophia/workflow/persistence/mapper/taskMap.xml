@@ -16,12 +16,17 @@
           <result property="processInstanceId" column="OWNER_" />
            <result property="businessKey" column="BUSINESS_KEY_" />
             <result property="procdefName" column="PROCDEF_NAME_" />
+            <result property="assigneeName" column="ASSIGNEE_NAME_" />
 	</resultMap>
 	
 	
 	<select id="listPage"  parameterType="java.util.Map"  resultMap="taskResultMap">
 	${limitBefore}
 	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_
+	 <if test=" assignee !=null">
+	 , (select ACT_ID_USER.ID_ from ACT_ID_USER  
+WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
+     </if>
 	    <include refid="selectTaskByQuery"/>
 	  ${limitAfter}
 	</select>
@@ -35,7 +40,6 @@
      from ACT_RU_TASK RES
     INNER JOIN ACT_RU_EXECUTION EX ON  EX.ID_=RES.EXECUTION_ID_
     INNER JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
-    INNER JOIN  ACT_RU_IDENTITYLINK I ON I.TASK_ID_ = RES.ID_
        <include refid="commonSelectTaskWhere"/>
     </sql>
 	
@@ -50,36 +54,21 @@
       <if test="nameLike != null">
         and RES.NAME_ like #{nameLike}
       </if>
-      
-      
-      
-      
-       <if test=" candidateGroups != null  || assignee !=null">
+       <if test=" assignee !=null">
          and (
-             <if test="assignee !=null"> 
-              RES.ASSIGNEE_ = #{assignee}
-                or
-             </if> 
-		      ( RES.ASSIGNEE_ is null
-		        and I.TYPE_ = 'candidate'
-		        and 
-		        ( 
-		          <if test="assignee != null">
-		            I.USER_ID_ = #{assignee}          
-		          </if>
-		          <if test="assignee != null &amp;&amp; candidateGroups != null &amp;&amp; candidateGroups.size() &gt; 0">
-		            or
-		          </if>
-		          <if test="candidateGroups != null &amp;&amp; candidateGroups.size() &gt; 0">
-		            I.GROUP_ID_ IN
-		            <foreach item="group" index="index" collection="candidateGroups" 
-		                     open="(" separator="," close=")">
-		              #{group}
-		            </foreach>
-		          </if>
-		          )
-		        )
-             )
+              RES.ASSIGNEE_ = #{assignee} or (RES.ASSIGNEE_ is null AND RES.ID_ IN (SELECT I.TASK_ID_
+                                                                                                          from ACT_RU_IDENTITYLINK I
+                                                                                                         where I.TYPE_ =
+                                                                                                               'candidate'
+                                                                                                           and (I.USER_ID_ =
+                                                                                                               #{assignee} or
+                                                                                                               I.GROUP_ID_ IN
+                                                                                                               (SELECT men.GROUP_ID_
+                                                                                                                   from ACT_ID_MEMBERSHIP men
+                                                                                                                  where men.USER_ID_ =
+                                                                                                                        #{assignee}))))
+                          )                                
+             
        </if>
  
 	</where>

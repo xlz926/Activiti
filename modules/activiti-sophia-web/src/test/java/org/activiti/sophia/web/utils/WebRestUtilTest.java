@@ -54,21 +54,27 @@ public class WebRestUtilTest {
 	
 	//获取待办列表
 	@Test
-	public void getTaskList() {
-		 try {
-			JsonNode responseNode = objectMapper.readTree("{\"id\":\"value\"}");
-			
-			for(JsonNode node: responseNode ){
-				node.getTextValue();
-			}
-			
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void getTaskList() throws JsonProcessingException, IOException {
+		
+		ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/sophia/task/117");
+		//ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
+		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
+	     requestNode = objectMapper.createObjectNode();
+	      ArrayNode variablesNode = objectMapper.createArrayNode();
+	      requestNode.put("action", "complete");
+	      requestNode.put("assignee", "kermit");
+	      requestNode.put("variables", variablesNode);
+	      
+	      ObjectNode var1 = objectMapper.createObjectNode();
+	      variablesNode.add(var1);
+	      var1.put("name", "auditPass");
+	      var1.put("value", true);
+		
+		 // requestNode = objectMapper.readTree("{\"action\":\"complete\",\"assignee\":\"kermit\",\"variables\":[{\"auditPass\":true}]}");
+		
+		  System.out.println(requestNode.get("variables"));
+		  
+	    //  resource.post(requestNode);
 	}
 
 }

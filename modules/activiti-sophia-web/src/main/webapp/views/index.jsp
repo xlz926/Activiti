@@ -135,86 +135,10 @@
 			    </ul>
        </div>
        
-        <div class='container-fluid'>
+           <div class='container-fluid'>
                 
-                
-                <div class="row-fluid">
-    <div class="span12">
-        <h3 class="heading">Horizontal scroll</h3>
-        <div role="grid" class="dataTables_wrapper form-inline" id="dt_b_wrapper"><div class="row"><div class="span6"><div id="dt_b_length" class="dataTables_length"><label>Show <select name="dt_b_length" size="1" aria-controls="dt_b"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="span6"><div class="dataTables_filter" id="dt_b_filter"><label>Search: <input type="text" aria-controls="dt_b"></label></div></div></div><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px none; width: 100%;"><div class="dataTables_scrollHeadInner" style="width: 1134px; padding-right: 0px;"><table class="table table-striped table-condensed dataTable" style="margin-left: 0px; width: 1134px;"><thead>
-    <tr role="row"><th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 226px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">Rendering engine</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 231px;" aria-label="Browser: activate to sort column ascending">Browser</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 300px;" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 188px;" aria-label="Engine version: activate to sort column ascending">Engine version</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 139px;" aria-label="CSS grade: activate to sort column ascending">CSS grade</th></tr>
-</thead></table></div></div><div class="dataTables_scrollBody" style="overflow: auto; width: 100%; height: 307px;"><table id="dt_b" class="table table-striped table-condensed dataTable" style="margin-left: 0px; width: 110%;" aria-describedby="dt_b_info"><thead>
-    <tr role="row" style="height: 0px;"><th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 226px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending"></th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 231px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Browser: activate to sort column ascending"></th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 300px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Platform(s): activate to sort column ascending"></th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 188px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Engine version: activate to sort column ascending"></th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dt_b" rowspan="1" colspan="1" style="width: 139px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="CSS grade: activate to sort column ascending"></th></tr>
-</thead>
-            
-        <tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">Safari 1.2</td>
-        <td class=" ">OSX.3</td>
-        <td class="center ">125.5</td>
-        <td class="center ">A</td>
-    </tr><tr class="even">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">Safari 1.3</td>
-        <td class=" ">OSX.3</td>
-        <td class="center ">312.8</td>
-        <td class="center ">A</td>
-    </tr><tr class="odd">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">Safari 2.0</td>
-        <td class=" ">OSX.4+</td>
-        <td class="center ">419.3</td>
-        <td class="center ">A</td>
-    </tr><tr class="even">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">Safari 3.0</td>
-        <td class=" ">OSX.4+</td>
-        <td class="center ">522.1</td>
-        <td class="center ">A</td>
-    </tr><tr class="odd">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">OmniWeb 5.5</td>
-        <td class=" ">OSX.4+</td>
-        <td class="center ">420</td>
-        <td class="center ">A</td>
-    </tr><tr class="even">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">iPod Touch / iPhone</td>
-        <td class=" ">iPod</td>
-        <td class="center ">420.1</td>
-        <td class="center ">A</td>
-    </tr><tr class="odd">
-        <td class=" sorting_1">Webkit</td>
-        <td class=" ">S60</td>
-        <td class=" ">S60</td>
-        <td class="center ">413</td>
-        <td class="center ">A</td>
-    </tr><tr class="even">
-        <td class=" sorting_1">Trident</td>
-        <td class=" ">Internet
-             Explorer 4.0</td>
-        <td class=" ">Win 95+</td>
-        <td class="center "> 4</td>
-        <td class="center ">X</td>
-    </tr><tr class="odd">
-        <td class=" sorting_1">Trident</td>
-        <td class=" ">Internet
-             Explorer 5.0</td>
-        <td class=" ">Win 95+</td>
-        <td class="center ">5</td>
-        <td class="center ">C</td>
-    </tr><tr class="even">
-        <td class=" sorting_1">Trident</td>
-        <td class=" ">Internet
-             Explorer 5.5</td>
-        <td class=" ">Win 95+</td>
-        <td class="center ">5.5</td>
-        <td class="center ">A</td>
-    </tr></tbody></table></div></div><div class="row"><div class="span6"><div class="dataTables_info" id="dt_b_info">Showing 1 to 10 of 57 entries</div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">&lt; Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next &gt; </a></li></ul></div></div></div></div>
-    </div>
-</div>
                 </div>
-                </div>
+              </div>
               </div>
               <div class="sidebar">
               <div id="side_accordion" class="accordion">
@@ -244,11 +168,7 @@
 									<ul class="nav nav-list">
 										<li><a href="#views/flow/templatesInfo.jsp" class='ajaxMenu'>流程模板</a></li>
 										<li><a href="#views/flow/instancesInfo.jsp" class='ajaxMenu'>流程实例</a></li>
-										<li><a href="javascript:void(0)">Blog</a></li>
-										<li><a href="javascript:void(0)">FAQ</a></li>
-										<li><a href="javascript:void(0)">Formbuilder</a></li>
-										<li><a href="javascript:void(0)">Location</a></li>
-										<li><a href="javascript:void(0)">Profiles</a></li>
+										<li><a href="#views/flow/tasksInfo.jsp" class='ajaxMenu'>流程任务</a></li>
 									</ul>
 								</div>
 							</div>

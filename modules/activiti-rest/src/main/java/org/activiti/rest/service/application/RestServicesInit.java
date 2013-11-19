@@ -130,6 +130,7 @@ import org.activiti.rest.service.api.runtime.task.TaskSubTaskCollectionResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableCollectionResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableDataResource;
 import org.activiti.rest.service.api.runtime.task.TaskVariableResource;
+import org.activiti.rest.service.api.sophia.task.TaskActionResource;
 import org.activiti.rest.service.api.sophia.task.TaskListResource;
 import org.restlet.routing.Router;
 
@@ -298,6 +299,7 @@ public class RestServicesInit {
     
     /*sophia扩展服务*/
     router.attach("/sophia/tasks", TaskListResource.class);
+    router.attach("/sophia/task/{taskId}",TaskActionResource.class);
     
   }
   

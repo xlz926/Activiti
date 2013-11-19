@@ -91,7 +91,8 @@
 <thead><tr><th>模板key</th><th>模板名称</th><th>类型</th><th>部署时间</th><th>操作</th>  </tr></thead>
 <tbody> 
 {{for data}}
-<tr><td>{{:id}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: deploymentTime }}</td><td><a event-click="startFlow">启动流程</a></td></tr>
+<tr><td>{{:id}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: deploymentTime }}</td><td><a event-click="startFlow">启动流程</a>
+<a  event-click="viewFlow" class="btn">查看流程图</a></td></tr>
 {{/for}}
 </tbody>
 

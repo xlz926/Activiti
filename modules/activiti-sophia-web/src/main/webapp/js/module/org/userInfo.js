@@ -17,7 +17,7 @@ define(function(require){
 				   	});
 		this.editFormPage.link(true, user);
 		this.editFormPage.bind("submit",function(e){
-			 $.post("flow/restService/postRestService",{
+			 $.post("flow/restService/RestService",{
 				 method:"identity/users",
 				 params:JSON.stringify(user)
 			 }); 
@@ -26,7 +26,7 @@ define(function(require){
 		
 	}
 	UserInfo.prototype.loadData=function(){
-		$.get("flow/restService/getRestService",{method:"identity/users"},function(result){
+		$.get("flow/restService/RestService",{method:"identity/users"},function(result){
 			   $.templates("#templateTmpl").link("#templateList",result);
 		});
 	};

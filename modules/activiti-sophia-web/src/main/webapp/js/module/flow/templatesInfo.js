@@ -1,5 +1,8 @@
 define(function(require){
 	
+	var serverUrl ="flow/restService/RestService";
+	
+	
 	function Template(self){
 		var that =this;
 		  $("#fileSubmit").dialog({
@@ -21,15 +24,17 @@ define(function(require){
 		
 	}
 	Template.prototype.loadData=function(){
-		$.get("flow/restService/getRestService",{
+		$.get(serverUrl,{
 			method:"repository/process-definitions"
 			},function(data){
 			   $.templates("#templateTmpl").link("#templateList",data);
 		   });
 	};
+	
+	//启动流程
 	Template.prototype.startFlow=function(event,obj){
 		 var data =  $.view(obj).data;
-		 $.post("flow/restService/postRestService",{
+		 $.post(serverUrl,{
 			 method:"runtime/process-instances",
 			 params:JSON.stringify( {
 			      processDefinitionKey:data.key,
@@ -39,6 +44,11 @@ define(function(require){
 		
 	}
 	
+	//查看流程模板
+	Template.prototype.viewFlow=function(event,obj){
+		var data =  $.view(obj).data;
+		$.get()
+	}
 	
 	return Template;
 	

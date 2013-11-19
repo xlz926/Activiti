@@ -11,8 +11,7 @@ define(function(require){
 	}
 	
 	UserInfo.prototype.loadData=function(){
-		console.log($this)
-		$.get("flow/restService/getRestService",{method:"identity/groups"},function(result){
+		$.get("flow/restService/RestService",{method:"identity/groups"},function(result){
 			   $.templates("#templateTmpl").link("#templateList",result);
 		});
 		

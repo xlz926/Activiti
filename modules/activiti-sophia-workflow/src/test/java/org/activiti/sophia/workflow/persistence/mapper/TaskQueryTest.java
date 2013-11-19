@@ -26,7 +26,7 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	    	//System.out.println(taskQuery.getTaskList().size());
 	    	ServiceFactoryApplication test =new ServiceFactoryApplication();
 	        Map 	params =new HashMap(); 
-	       params.put("assignee", "kermit");
+	        params.put("assignee", "kermit");
 	        params.putAll(Pagination.toListPage(0, 30));
 	        
 	        List<String> group = new ArrayList<String>();

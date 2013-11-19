@@ -7,7 +7,7 @@ define(function(require){
 	}
 	
 	Instance.prototype.loadData=function(){
-		$.get("flow/restService/getRestService",{method:"history/historic-process-instances"},function(data){
+		$.get("flow/restService/RestService",{method:"history/historic-process-instances"},function(data){
 			$.templates("#templateTmpl").link("#templateList",data);
 		   });
 		
