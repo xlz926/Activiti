@@ -1322,8 +1322,7 @@ button.ui-button::-moz-focus-inner {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
-	padding: 0;
-	vertical-align: middle;
+	padding: 1px;
 }
 
 .ui-spinner-input {

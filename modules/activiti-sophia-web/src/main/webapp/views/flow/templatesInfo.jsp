@@ -21,42 +21,12 @@
 							<div class="widget-title">
                                 <span class="icon"><i class="icon-file"></i></span>
                                 <h5>待办任务</h5>
-                                <div>
-                                    <span>排序：</span>
-                                    <a class="btn btn-mini btn-primary">单据编号</a>
-                                    <a class="btn btn-mini">创建时间</a>
-                                </div>
 
                             </div>
-                              <div class="filter">
-                                <dl class="store">
-                                    <dt>单据类型：</dt>
-                                    <dd class="wrap-selects">
-                                        <select>
-                                            <option value="">--请选择--</option>
-                                            <option value="1">差旅费</option>
-                                            <option selected="selected" value="2">资产申购</option>
-                                        </select>
-                                    </dd>
-                                    <dd class="instock">
-                                        <a href="#">仅显示本人</a>
-                                    </dd>
-                                </dl>
-                                <dl class="type_chouse">
-                                    <dt>类型：</dt>
-                                    <dd>
-                                        <a class="on" href="#">全部</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="#">第一部分</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="#">第二部分</a>
-                                    </dd>
-                                </dl>
-                            </div>
                             <div class="btn_table">
-                                <a id ="openFile" class="btn"><i class="icon-plus"></i>文件上传</a>
+                                <a id ="openFile" class="btn"><i class="icon-plus"></i>流程部署</a>
+                                 <a id ="openFile" class="btn"><i class="icon-plus"></i>激活</a>
+                                  <a id ="openFile" class="btn"><i class="icon-plus"></i>暂停</a>
                             </div>
                             
                                <div id="templateList" class ="row-fluid tab-pane active" >
@@ -84,7 +54,9 @@
           <input  type="submit"  class="btn" value="上传"/>
       </form>
       </div>
-</div>
+      
+      <div id="templateImg" class="hide">
+      </div>
 
 <script  type="text/x-jsrender"   id ="templateTmpl">
 <table class="table">

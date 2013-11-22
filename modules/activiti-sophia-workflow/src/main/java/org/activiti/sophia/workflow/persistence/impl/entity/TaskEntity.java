@@ -17,6 +17,7 @@ public class TaskEntity {
 	   private String businessKey;
 	   private String assigneeName;
 	   private String procdefName;
+	   private Date  applyDate;
 
 	   public String getProcdefName() {
 		return procdefName;
@@ -125,4 +126,14 @@ public class TaskEntity {
 	public void setParentTaskId(String parentTaskId) {
 		this.parentTaskId = parentTaskId;
 	}
+
+	public Date getApplyDate() {
+		return applyDate;
+	}
+
+	public void setApplyDate(Date applyDate) {
+		this.applyDate = applyDate;
+	}
+
+	
 }

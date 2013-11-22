@@ -1,6 +1,6 @@
 ﻿seajs.config({
   // Enable plugins
-  plugins: ['shim'],
+  plugins: ['shim','text'],
 
   // Configure alias
   alias: {
@@ -33,5 +33,5 @@
   },
   cache:false,
   charset:'utf-8',
-  base:jsPath,
+  base:basePath,
 });

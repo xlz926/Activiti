@@ -18,6 +18,10 @@ public class ServiceFactoryApplication implements ApplicationContextAware{
 	public static TaskQueryService createTaskQuery() {
 		return applicationContext.getBean(TaskQueryService.class);
 	}
+	
+	public static HistoricTaskQueryService createHitoricTaskQuery(){
+		return  applicationContext.getBean(HistoricTaskQueryService.class);
+	}
 }
 	
 	

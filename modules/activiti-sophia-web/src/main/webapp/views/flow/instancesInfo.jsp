@@ -16,7 +16,6 @@
        </div>
        
         <div class='container-fluid'>
-        
         <div class="widget-box">
 							<div class="widget-title">
                                 <span class="icon"><i class="icon-file"></i></span>

@@ -16,12 +16,11 @@ public class WebRestUtil {
 	private static String  preUrl ="http://localhost:8081/activiti-rest/service/";
 	 protected static ObjectMapper objectMapper = new ObjectMapper();
 	  
-	 protected static ClientResource getAuthenticatedClient(String method) {
-		    ClientResource client = new ClientResource(preUrl + method);
+	 public static ClientResource getAuthenticatedClient(String method) {
+		     ClientResource client = new ClientResource(preUrl+method);
 		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
 		    return client;
 		  }
-	 
 	 
 	 
 	public static JsonNode restGet(String method){
@@ -43,6 +42,8 @@ public class WebRestUtil {
 		 
 		return getAuthenticatedClient(method).post(params);
 	}
+	
+	
 	
 	
 }

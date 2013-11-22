@@ -17,15 +17,16 @@
            <result property="businessKey" column="BUSINESS_KEY_" />
             <result property="procdefName" column="PROCDEF_NAME_" />
             <result property="assigneeName" column="ASSIGNEE_NAME_" />
+            <result property="applyDate" column="APPLY_DATE_" />
 	</resultMap>
 	
 	
 	<select id="listPage"  parameterType="java.util.Map"  resultMap="taskResultMap">
 	${limitBefore}
-	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_
+	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_ ,EX.START_TIME_ APPLY_DATE_
 	 <if test=" assignee !=null">
 	 , (select ACT_ID_USER.ID_ from ACT_ID_USER  
-WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
+    WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
      </if>
 	    <include refid="selectTaskByQuery"/>
 	  ${limitAfter}
@@ -38,7 +39,7 @@ WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
 	
 	 <sql id="selectTaskByQuery">  
      from ACT_RU_TASK RES
-    INNER JOIN ACT_RU_EXECUTION EX ON  EX.ID_=RES.EXECUTION_ID_
+    INNER JOIN ACT_HI_PROCINST EX ON  EX.ID_=RES.EXECUTION_ID_
     INNER JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
        <include refid="commonSelectTaskWhere"/>
     </sql>

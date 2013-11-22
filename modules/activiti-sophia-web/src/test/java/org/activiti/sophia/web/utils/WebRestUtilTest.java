@@ -20,30 +20,28 @@ public class WebRestUtilTest {
 	// protected String baseUrl ="http://localhost:8081/activiti-rest/service/";
 	 protected String baseUrl ="http://172.16.8.89:7080/activiti-rest/service/";
 	@Test
-	public void test() throws IOException {
+	public void completeTask() throws IOException {
 	
        String url ="http://localhost:8081/activiti-rest/service/runtime/tasks/1306";
 
-		ClientResource resource = new ClientResource("http://172.16.8.89:7080/activiti-rest/service/runtime/tasks/106");
+		ClientResource resource = new ClientResource("http://172.16.8.89:7080/activiti-rest/service/sophia/task/{taskId}");
 		//ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
 		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
 		try {
 		
-			 requestNode = objectMapper.createObjectNode();
+			  requestNode = objectMapper.createObjectNode();
 		      ArrayNode variablesNode = objectMapper.createArrayNode();
-		 /*     requestNode.put("action", "complete");
+		      requestNode.put("action", "complete");
 		      requestNode.put("variables", variablesNode);
 		      
 		      ObjectNode var1 = objectMapper.createObjectNode();
 		      variablesNode.add(var1);
 		      var1.put("name", "auditPass");
-		      var1.put("value", true);*/
-			//dd.put("variables", variablesNode);
-			 
-			 //RestTemplate restTemplate = new RestTemplate();
-			// restTemplate.postForObject(url, null, String.class, form);*/
-		 System.out.println(resource.post(requestNode));	 ;
-		
+		      var1.put("value", true);
+		      var1.put("type", "boolean");
+		      requestNode.put("variables", variablesNode);
+		      resource.post(requestNode);
+	
 		} catch (ResourceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,4 +75,16 @@ public class WebRestUtilTest {
 	    //  resource.post(requestNode);
 	}
 
+	
+	
+	@Test
+	public void start(){
+		ClientResource resource = new ClientResource("http://172.16.8.89:7080/activiti-rest/service/runtime/process-instances");
+		//ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
+		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
+	     requestNode = objectMapper.createObjectNode();
+	      requestNode.put("processDefinitionKey", "oa_leave");
+	      requestNode.put("businessKey", "555554444");
+	      resource.post(requestNode);
+	}
 }

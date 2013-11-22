@@ -1,17 +1,16 @@
 package org.activiti.sophia.web.actions.flow;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.activiti.sophia.web.utils.WebRestUtil;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.node.ObjectNode;
-import org.restlet.representation.Representation;
+import org.restlet.resource.ResourceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +51,29 @@ public class RestService {
 		}
 		return 	 result;
 	}
+	
+	@RequestMapping(value = "getResource", method = {  RequestMethod.GET })
+	public void getResource(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam("deploymentId") String deploymentId,@RequestParam("diagramResourceName") String diagramResourceName){
+		try {
+			
+			InputStream  resourceAsStream = WebRestUtil.getAuthenticatedClient("repository/deployments/"+deploymentId+"/resourcedata/"+diagramResourceName).get().getStream();
+			 byte[] b = new byte[1024];
+			    int len = -1;
+			    while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+			      response.getOutputStream().write(b, 0, len);
+			    }
+			
+		} catch (ResourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	
 }

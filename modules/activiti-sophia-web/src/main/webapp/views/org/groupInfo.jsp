@@ -10,7 +10,7 @@
 			            <a href="#"><i class="icon-home">组织架构</i></a>
 			        </li>
 			        <li>
-			            <a href="#">用户管理</a>
+			            <a href="#">角色管理</a>
 			        </li>
 			    </ul>
        </div>
@@ -22,36 +22,20 @@
 							<div class="widget-title">
                                 <span class="icon"><i class="icon-file"></i></span>
                                 <h5>角色列表</h5>
-                                <span>排序：</span>
-                                  <a class="btn btn-mini btn-primary">用户编码</a>
-                                  <a class="btn btn-mini">创建时间</a>
-                            </div>
-                              <div class="filter">
-                           
-                                <dl class="type_chouse">
-                                    <dt>用户名：</dt>
-                                    <dd>
-                                        
-                                    </dd>
-                                </dl>
                             </div>
                             <div class="btn_table">
-                                <a id ="openFile" class="btn"><i class="icon-plus"></i>新增用户</a>
+                                <a id ="openEidtPage" class="btn"><i class="icon-plus"></i>新增角色</a>
                             </div>
                             
-                               <div id="templateList" class ="row-fluid" >
+                               <div  class ="row-fluid"  >
+                               
+                               <table class="table">
+								<thead><tr><th>角色ID</th><th>角色名称</th><th>角色类型</th> </tr></thead>
+								<tbody data-link="{for groups.data tmpl='#templateTmpl'}"> 
+								</tbody>
+								</table>
 	                             </div>
-                            <div class="pagination pagination-small btn_all">
-                                <ul>
-                                    <li><a href="#">«</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">»</a></li>
-                                </ul>
-                            </div>
+	                             <div id="pagination"></div>
                        </div>
        
        </div>
@@ -78,9 +62,9 @@
                                             </div><!--/contact-search-->
                                             <!--contact-list, we set this max-height:380px, you can set this if you want-->
                                             <ul class="contact-list">
+                                            {{for users.data}}
                                                 <li class="contact-alt grd-white">
-                                                    <a data-id="iin@mail.com" data-toggle="tab" href="#chat">
-                                                        <!--we use contact-item structure like the component media in bootstrap-->
+                                                    <a  data-toggle="tab" >
                                                         <div class="contact-item">
                                                             <div class="pull-left">
                                                                 <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
@@ -93,82 +77,8 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li class="contact-alt grd-white">
-                                                    <!--we use data toggle tab for navigate this action-->
-                                                    <a data-id="sungep@mail.com" data-toggle="tab" href="#chat">
-                                                        <div class="contact-item">
-                                                            <div class="pull-left">
-                                                                <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
-                                                            </div>
-                                                            <div class="contact-item-body">
-                                                                <div title="idle" class="status"><i class="icofont-certificate color-orange"></i></div>
-                                                                <p class="contact-item-heading bold">Sungep</p>
-                                                                <p class="help-block"><small class="muted">UI designer</small></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="contact-alt grd-white">
-                                                    <!--we use data toggle tab for navigate this action-->
-                                                    <a data-id="harab@mail.com" data-toggle="tab" href="#chat">
-                                                        <div class="contact-item">
-                                                            <div class="pull-left">
-                                                                <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
-                                                            </div>
-                                                            <div class="contact-item-body">
-                                                                <div title="ofline" class="status"><i class="icofont-certificate color-silver-dark"></i></div>
-                                                                <p class="contact-item-heading bold">Harab</p>
-                                                                <p class="help-block"><small class="muted">Team Leader</small></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="contact-alt grd-white active"> <!-- you can use this for active contact or your self status-->
-                                                    <!--we use data toggle tab for navigate this action-->
-                                                    <a data-id="janesmith@mail.com" data-toggle="tab" href="#chat">
-                                                        <div class="contact-item">
-                                                            <div class="pull-left">
-                                                                <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
-                                                            </div>
-                                                            <div class="contact-item-body">
-                                                                <div title="online" class="status"><i class="icofont-certificate color-green"></i></div>
-                                                                <p class="contact-item-heading bold">Jane smith</p>
-                                                                <p class="help-block"><small class="muted">Data analyst</small></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="contact-alt grd-white">
-                                                    <!--we use data toggle tab for navigate this action-->
-                                                    <a data-id="mahardika@mail.com" data-toggle="tab" href="#chat">
-                                                        <div class="contact-item">
-                                                            <div class="pull-left">
-                                                                <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
-                                                            </div>
-                                                            <div class="contact-item-body">
-                                                                <div title="online" class="status"><i class="icofont-certificate color-green"></i></div>
-                                                                <p class="contact-item-heading bold">Mahardika</p>
-                                                                <p class="help-block"><small class="muted">PHP Developer</small></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="contact-alt grd-white">
-                                                    <!--we use data toggle tab for navigate this action-->
-                                                    <a data-id="opytama@mail.com" data-toggle="tab" href="#chat">
-                                                        <div class="contact-item">
-                                                            <div class="pull-left">
-                                                                <img src="style/img/user-thumb-mini.jpg" style="width: 32px;height: 32px;" class="contact-item-object">
-                                                            </div>
-                                                            <div class="contact-item-body">
-                                                                <div title="ofline" class="status"><i class="icofont-certificate color-silver-dark"></i></div>
-                                                                <p class="contact-item-heading bold">Opytama</p>
-                                                                <p class="help-block"><small class="muted">PHP Developer</small></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul><!--/contact-list-->
+                                                {{/for}}
+                                            </ul>
                                         </div>
                                     </div>
          
@@ -176,15 +86,41 @@
         </div>
         </div>
 	   </div>
+	   
+	    <form class="form-horizontal hide"  id="groupEdit">
+					<fieldset>
+						<div class="control-group formSep">
+							<label class="control-label">角色编码</label>
+							   <div class="controls">
+								<input type="text" data-link="id"   >
+							</div>
+						</div>
+						<div class="control-group formSep">
+							<label class="control-label" for="u_fname">角色名称</label>
+							<div class="controls">
+								<input type="text" data-link="name"  >
+							</div>
+						</div>
+						
+						<div class="control-group formSep">
+							<label class="control-label" for="u_fname">角色类型</label>
+							<div class="controls">
+								<input type="text" data-link="type"  >
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  class="btn btn-gebo">保存</button>
+							   <a class="btn">取消</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+	   
+	   
+	   
 	   <script  type="text/x-jsrender"   id ="templateTmpl">
-<table class="table">
-<thead><tr><th>角色ID</th><th>角色名称</th><th>角色类型</th> </tr></thead>
-<tbody> 
-{{for data}}
-<tr><td>{{:id}}</td><td>{{:name}}</td><td>{{:type}}</td></tr>
-{{/for}}
-</tbody>
-</table>
+           <tr><td>{{:id}}</td><td>{{:name}}</td><td>{{:type}}</td></tr>
 	</script>
 	   
         </div>

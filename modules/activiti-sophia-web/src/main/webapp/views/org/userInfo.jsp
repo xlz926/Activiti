@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-	<div class="main_content"  npp-module="module/org/userInfo">
+	<div class="main_content tmpl"  npp-module="module/org/userInfo">
        <div id="jCrumbs" class="breadCrumb module">
 			    <ul>
 			        <li>
@@ -27,18 +27,14 @@
                                 <a id ="openFile" class="btn" event-click="addUser"><i class="icon-plus" ></i>新增用户</a>
                             </div>
                                <div id="templateList" class ="row-fluid" >
+                               <table class="table table-striped table-hover">
+								<thead><tr><th>用户ＩＤ</th><th>用户名称</th><th>别名</th><th>邮件地址</th> </tr></thead>
+								<tbody data-link="{for users.data tmpl='#userList'}"> 
+								
+								</tbody>
+								</table>
+								<div  id="pagination"></div>
 	                             </div>
-                            <div class="pagination pagination-small btn_all">
-                                <ul>
-                                    <li><a href="#">«</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">»</a></li>
-                                </ul>
-                            </div>
                        </div>
          </div>
         <div class="span3">
@@ -218,17 +214,9 @@
 						</div>
 					</fieldset>
 				</form>
-	   <script  type="text/x-jsrender"   id ="templateTmpl">
-<table class="table table-striped table-hover">
-<thead><tr><th>用户ＩＤ</th><th>用户名称</th><th>别名</th><th>邮件地址</th> </tr></thead>
-<tbody> 
-{{for data}}
-<tr><td>{{:id}}</td><td>{{:firstName}}</td><td>{{:lastName}}</td><td>{{: email }}</td></tr>
-{{/for}}
-</tbody>
-</table>
-{{pagination total start  size/}}
-	</script>
-	   
         </div>
+      
        
+     <script id="userList" type="text/x-jsrender">
+        <tr><td>{{:id}}</td><td>{{:firstName}}</td><td>{{:lastName}}</td><td>{{: email }}</td></tr>
+     </script>

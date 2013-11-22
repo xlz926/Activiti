@@ -26,4 +26,5 @@
 	<!-- 访问静态文件 -->
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/style/**" location="/style/" />
+	<mvc:resources mapping="/pages/**" location="/pages/" />
 	</beans>

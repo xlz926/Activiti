@@ -8,6 +8,7 @@
     <%@ include file="/common/global.jsp" %>
     <%@ include file="/common/include-base-styles.jsp" %>
     <%@ include file="/common/include-plugin-js.jsp" %>
+      <%@ include file="/common/include-stell-js.jsp" %>
      <link href="${basePath}/style/css/index.css" rel="stylesheet"  >
 
 <script src="${jsPath }/lib/seajs/sea.js"
@@ -120,9 +121,9 @@
 						</div>
 					</div>
 				</div>
-			
+			</header>
 			<div id="contentwrapper">
-                <div class="main_content" npp-module="module/index">
+                <div class="main_content" npp-module="js/module/index">
                 
                   <div id="jCrumbs" class="breadCrumb module">
 			    <ul>
@@ -151,8 +152,8 @@
 							<div class="accordion-body" >
 								<div class="accordion-inner">
 									<ul class="nav nav-list">
-										<li><a href="#views/org/userInfo.jsp" class='ajaxMenu'>用户管理</a></li>
-										<li><a href="#views/org/groupInfo.jsp" class='ajaxMenu'>角色管理</a></li>
+										<li><a href="js/module/org/userInfo" class='ajaxMenu'>用户管理</a></li>
+										<li><a href="js/module/org/groupInfo" class='ajaxMenu'>角色管理</a></li>
 									</ul>
 								</div>
 							</div>
@@ -166,9 +167,10 @@
 							<div class="accordion-body "  >
 								<div class="accordion-inner">
 									<ul class="nav nav-list">
-										<li><a href="#views/flow/templatesInfo.jsp" class='ajaxMenu'>流程模板</a></li>
+										<li><a href="js/module/flow/templatesInfo" class='ajaxMenu'>流程模板</a></li>
 										<li><a href="#views/flow/instancesInfo.jsp" class='ajaxMenu'>流程实例</a></li>
-										<li><a href="#views/flow/tasksInfo.jsp" class='ajaxMenu'>流程任务</a></li>
+										<li><a href="js/module/flow/tasksInfo" class='ajaxMenu'>待办任务</a></li>
+										<li><a href="#views/flow/doneTasks.jsp" class='ajaxMenu'>已办任务</a></li>
 									</ul>
 								</div>
 							</div>

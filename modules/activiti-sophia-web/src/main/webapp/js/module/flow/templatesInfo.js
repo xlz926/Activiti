@@ -3,32 +3,43 @@ define(function(require){
 	var serverUrl ="flow/restService/RestService";
 	
 	
-	function Template(self){
-		var that =this;
-		  $("#fileSubmit").dialog({
+	function Template(content){
+	     this.element =content,
+		this.model = {templates:{data:[]}},
+		this.tmpl =  $.templates(require("pages/flow/templatesInfo.html")),
+		this.element.link(this.tmpl,this.model),
+		this.viewTemplate =this.element.find("#templateImg").dialog({
+												            autoOpen:false,
+												            width:600,
+												            height:400}),
+		this.fileSubmit  =   this.element.find("#fileSubmit").dialog({
 			   autoOpen:false,
-			   title:"流程模板上传",
-			   open:function(){
-				   var $this =$(this);
-				   $this.find("form").ajaxForm({success:function(){
-					   that.loadData();
-					   $this.dialog("close");
-				   }});
-			   }
+			   title:"流程模板上传"
 		   });
+		   this.init();
 		   
-		   $("#openFile").click(function(){
-			   $("#fileSubmit").dialog("open");
-		   });
-		   that.loadData();
-		
 	}
+	Template.prototype.init=function(){
+		var that =this;
+		this.fileSubmit.find("form").ajaxForm({success:function(){
+			   that.loadData();
+			   that.fileSubmit.dialog("close");
+		   }});
+	   this.loadData();
+	};
+	
 	Template.prototype.loadData=function(){
+		var that =this;
 		$.get(serverUrl,{
-			method:"repository/process-definitions"
-			},function(data){
-			   $.templates("#templateTmpl").link("#templateList",data);
+			method:"process-definitions"
+			},function(result){
+				   $.observable(that.model.templates.data).refresh(result.data);
 		   });
+	}
+	
+	Template.prototype.openFile=function(){
+		this.fileSubmit.dialog("open");
+		
 	};
 	
 	//启动流程
@@ -38,7 +49,8 @@ define(function(require){
 			 method:"runtime/process-instances",
 			 params:JSON.stringify( {
 			      processDefinitionKey:data.key,
-		          businessKey:Math.random()*1000
+		          businessKey:Math.random()*1000,
+		          variables:[{name:"isDraft",value:true}]
 		        })
 		 }); 
 		
@@ -47,7 +59,9 @@ define(function(require){
 	//查看流程模板
 	Template.prototype.viewFlow=function(event,obj){
 		var data =  $.view(obj).data;
-		$.get()
+		var that =this ;
+		that.viewTemplate.html($("<img />").attr("src","flow/restService/getResource?deploymentId="+data.deploymentId+"&diagramResourceName="+data.diagramResourceName));
+		that.viewTemplate.dialog("open").dialog("option","title",data.name);
 	}
 	
 	return Template;

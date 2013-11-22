@@ -7,5 +7,6 @@
   
 
 	var jsPath = '${jsPath}';//站点根目录地址
+	var basePath = '${basePath}';
 
 </script>
