@@ -29,6 +29,7 @@
     WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
      </if>
 	    <include refid="selectTaskByQuery"/>
+	     ${orderBy}
 	  ${limitAfter}
 	</select>
 	 

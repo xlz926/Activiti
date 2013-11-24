@@ -2,6 +2,7 @@
     body {color: #222;padding: 0}
 	html,body {height:100%}
 	a:focus{outline:none}
+	a{cursor:pointer}
 	.tmpl{display: none}
 	/* Bootstrap adjustments */
 		h1,h2,h3,h4,h5,h6{font-family:inherit;font-weight:700;color:inherit;text-rendering:optimizelegibility;margin:0}

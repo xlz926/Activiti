@@ -7,8 +7,8 @@ import java.util.Map;
 public class Pagination   {
 
    private static final String  PAGE_LIMIT_BEFORE ="select * from ( select a.*, ROWNUM rnum from ( ";
-   private static final String PAGE_LIMIT_AFTER =" ) a where ROWNUM < %d) where rnum  >= %d ";
-   private static final String ORDER_BY ="order by %s";
+   private static final String PAGE_LIMIT_AFTER =" ) a where ROWNUM <= %d) where rnum  > %d ";
+   private static final String ORDER_BY =" order by %s ";
    
    public static Map toListPage(int start , int size){
 	   return toListPage(start ,size,null);

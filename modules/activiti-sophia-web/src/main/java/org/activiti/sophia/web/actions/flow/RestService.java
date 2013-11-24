@@ -52,6 +52,27 @@ public class RestService {
 		return 	 result;
 	}
 	
+	
+	@RequestMapping(value = "putRestService", method = {  RequestMethod.POST })
+	@ResponseBody
+	public JsonNode putRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
+		  JsonNode	requestNode =objectMapper.createObjectNode();
+		  JsonNode result =objectMapper.createObjectNode();
+		try {
+			Object params =request.getParameter("params");
+			 if(params !=null)requestNode = objectMapper.readTree(params.toString());
+			
+			 result =objectMapper.readTree(WebRestUtil.restPost(method, requestNode).getStream());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 	 result;
+	}
+	
 	@RequestMapping(value = "getResource", method = {  RequestMethod.GET })
 	public void getResource(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam("deploymentId") String deploymentId,@RequestParam("diagramResourceName") String diagramResourceName){

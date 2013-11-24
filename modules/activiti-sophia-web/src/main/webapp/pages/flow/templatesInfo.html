@@ -1,0 +1,48 @@
+
+
+	<div class="main_content" >
+       <div id="jCrumbs" class="breadCrumb module">
+			    <ul>
+			        <li>
+			            <a href="#"><i class="icon-home">流程管理</i></a>
+			        </li>
+			        <li>
+			            <a href="#">模板管理</a>
+			        </li>
+			    </ul>
+       </div>
+        <div class='container-fluid'>
+        <div class="widget-box">
+                            <div class="btn_table">
+                                <a   event-click="openFile" class="btn"><i class="icon-plus"></i>流程部署</a>
+<!--                                  <a   class="btn hide" event-click="activate"><i class="icon-plus"></i>激活</a>
+                                  <a   class="btn hide" event-click="suspend"><i class="icon-plus"></i>暂停</a> -->
+                            </div>
+                               <div id="templateList" class ="row-fluid tab-pane active" >
+                               
+	                               <table class="table">
+											<thead><tr><th>序号</th><th>模板编号</th><th>模板名称</th><th>类型</th><th>版本号</th><th>操作</th>  </tr></thead>
+											<tbody> 
+											{^{for templates.data}}
+											<tr><td>{{:#index+1}}</td><td>{{:key}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: version }}</td><td><a class="hide" event-click="startFlow">启动流程</a>
+											<a  event-click="viewFlow" class="btn">查看流程图</a></td></tr>
+											{^{/for}}
+											</tbody>
+											</table>
+		                              </div>
+                            <div id="pagination">
+                            </div>
+                       </div>
+       
+	   </div>
+	   <form id="fileSubmit" action="flow/templatesInfo/deployment" method="post">
+             <label>请选择需要上传的文件</label>
+          <input type="file" name="templateFile"/>
+      </form>
+      
+      <div id="templateImg" class="hide">
+      </div>
+
+   </div>
+
+

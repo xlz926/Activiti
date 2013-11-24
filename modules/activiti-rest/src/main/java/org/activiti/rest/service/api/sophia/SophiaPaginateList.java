@@ -17,7 +17,6 @@ public class SophiaPaginateList {
 	
 	  @SuppressWarnings({ "rawtypes", "unchecked" })
 	  public DataResponse paginateList( Queryservice query,Map params,Form form) {
-		  
 		   DataResponse response = new DataResponse();
 		   response.setTotal(query.count(params)); 
 		  int start =RequestUtil.getInteger(form, "start", 0);

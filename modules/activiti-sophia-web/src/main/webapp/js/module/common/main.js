@@ -4,6 +4,14 @@ define(function(require, exports, module){
    require("js/module/common/jsviewHelper");
    require("js/module/common/jsviewTag");
    
+   
+   stell.callbacks.add(function(context){
+	  
+	   context = context.jquery||$(context);
+	   context.find("[pagination]").each(function(){
+		   $(this).pagination(stell.util.eval($(this).Attr("pagination")));
+	   });
+   });
 /*   $("[npp-module]").livequery(function(){
 	   var $this =$(this);
 	  seajs.use($this.attr('npp-module'),function(module){
