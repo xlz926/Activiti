@@ -13,35 +13,26 @@
        
         <div class='container-fluid'>
         <div class="row-fluid">
-        <div class="span9" >
-           <div  id="roles" class="widget-box" >
-							<div class="widget-title">
-                                <span class="icon"><i class="icon-file"></i></span>
-                                <h5>角色列表</h5>
+        <div class="span8" id="rolesList"   data-path="roles" style="height:260px;">
+                            <div class="datagrid-toolbar btn-group">
+                                <a  event-click='addRole' class="btn"><i class="icon-plus"></i>新增角色</a>
+                                <a  event-click='editRole' class="btn"><i class="icon-inbox"></i>编辑角色</a>
+                                <a  event-click='deleteRole' class="btn"><i class="icon-remove"></i>删除角色</a>
+                                <a  event-click='addMenbers' class="btn"><i class="icon-plus"></i>新增成员</a>
                             </div>
-                            <div class="btn_table">
-                                <a id ="openEidtPage" class="btn"><i class="icon-plus"></i>新增角色</a>
-                            </div>
-                            
-                               <div  class ="row-fluid"  >
-                               
-                               <table class="table">
-								<thead><tr><th>角色编号</th><th>角色名称</th><th>角色类型</th> </tr></thead>
-								<tbody  > 
+                            <table class="table">
+								<thead><tr><th  width="40px">序号</th><th>角色编号</th><th>角色名称</th><th>角色类型</th> </tr></thead>
+								<tbody> 
 								{^{for roles.data}}
-								   <tr event-click="getMembers"><td>{{:id}}</td><td>{{:name}}</td><td>{{:type}}</td></tr>
+								   <tr><td>{{:#index}} <input type="checkbox" class="datagrid-cell-check"/></td><td>{{:id}}</td><td>{{:name}}</td><td>{{:type}}</td></tr>
 								{^{/for}}
 								</tbody>
-								</table>
-	                             </div>
-	                             <div id="pagination"></div>
-                       </div>
+						</table>
        
        </div>
        
         <div class="span3">
          <aside class="side-right"  >
-         
          <div id="contact" class="tab-pane fade active in">
                                         <div class="side-contact">
                                             <!--contact-control-->
@@ -70,8 +61,8 @@
                                                             </div>
                                                             <div class="contact-item-body">
                                                                 <div title="busy" class="status"><i class="icofont-certificate color-red"></i></div>
-                                                                <p class="contact-item-heading bold">Iin T.</p>
-                                                                <p class="help-block"><small class="muted">Team Leader</small></p>
+                                                                <p class="contact-item-heading bold">{{:id}}</p>
+                                                                <p class="help-block"><small class="muted">{{:firstName}}</small></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -109,7 +100,16 @@
 					</fieldset>
 				</form>
 	   
-	   <div class="has"></div>
+	   <div id="userList" url="flow/restService/RestService" data-path="userList" style="height:260px;width:450px;">
+	            <table class="table">
+								<thead><tr><th  width="40px">序号</th><th width="60px">用户编号</th><th  >用户名称</th><th  >别名</th><th  >邮件地址</th> </tr></thead>
+								<tbody> 
+								{^{for userList.data}}
+								     <tr><td>{{:#index}} <input type="checkbox" class="datagrid-cell-check"/></td><td>{{:id}}</td><td>{{:firstName}}</td><td>{{:lastName}}</td><td>{{: email }}</td></tr>
+								  {^{/for}}
+				 	</tbody>
+			 </table>
+	   </div>
 	   
         </div>
        

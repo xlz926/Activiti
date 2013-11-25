@@ -3,18 +3,21 @@ define(function(require){
 	function UserInfo(content){
 		this.tmpl = $.templates(require("pages/org/userInfo.html")),
 		this.url ='flow/restService/RestService',
-		this.content=content.jquery?content:$(content),
-		this.model ={users:{data:[{id:"dd"}]},
+		this.element=content.jquery?content:$(content),
+		this.model ={users:{data:[],
+			         search:{method:"identity/users"}
+		             },
 				    user:{id:""},
 			        roles:{data:[]}
 	            };
-		console.log(this.template);
-		this.content.link(this.tmpl,this.model);
-        this.editFormPage =	this.content.find("#userEdit");
+		this.element.link(this.tmpl,this.model);
+        this.editFormPage =	this.element.find("#userEdit");
+        this.userList =this.element.find("#userList");
 		this.init();
 	}
 	UserInfo.prototype.init=function(params){
 		var  that =this;
+		this.userList.datagrid();
 		that.editFormPage.dialog({
 		    autoOpen:false,
 		    width:600,
@@ -24,37 +27,20 @@ define(function(require){
 		    	that.saveUser();
 				return false;
 		    }}
-		    
-		   	}).bind("submit",function(e){
-				
-			});
-		$.get(this.url,{method:"identity/users"},function(result){
-			   $.observable(that.model.users.data).refresh(result.data);
-			   that.content.find("#pagination").pagination({
-				   total:result.total,
-				   size:result.size,
-				   onSelectPage:function(index,size){
-					   
-				   }
-			   });
-		});
+		   	})
 	};
-	
-	
 	UserInfo.prototype.addUser =function(){
 		this.editFormPage.dialog("open");
 	}
 	UserInfo.prototype.saveUser= function(){
+		var that =this;
 		 $.post(this.url,{
 			 method:"identity/users",
 			 params:JSON.stringify(that.model.user)
 		 },function(){
-			 $.observable(that.model).setProperty("user",{});
+			 that.userList.datagrid("refresh");
 		 }); 
 	};
-	
-	
-	
 	return UserInfo;
 	
 });

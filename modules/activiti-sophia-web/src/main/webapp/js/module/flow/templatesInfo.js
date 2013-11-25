@@ -4,7 +4,7 @@ define(function(require){
     	var	that =this ;
 		this.url ="flow/restService/RestService" ,
 	    this.element =content,
-		this.model = {templates:{data:[]}},
+		this.model = {templates:{data:[],search:{method:"process-definitions"}}},
 		this.tmpl =  $.templates(require("pages/flow/templatesInfo.html")),
 		this.element.link(this.tmpl,this.model),
 		this.viewTemplate =this.element.find("#templateImg").dialog({
@@ -21,28 +21,12 @@ define(function(require){
 				   }});
 			   }}
 		   });
-		this.init();
+		this.templateList =this.element.find("#templateList").datagrid({
+			url:"flow/restService/RestService"
+		});
 	}
 	
-	Template.prototype.init=function(){
-		var that =this;
-		this.element.find("#pagination").pagination({onSelectPage:function(index,size){
-			that.loadData((index-1)*size,size);
-		}});
-		
-	};
 	
-	Template.prototype.loadData=function(start,size){
-		var that =this;
-		$.get(this.url,{
-			method:"process-definitions?sort=deploymentId&order=desc&start="+start+"&size="+size
-			},function(result){
-				  $.observable(that.model.templates.data).refresh(result.data);
-				  $.observable(that.model).setProperty("start",result.start);
-				  $.observable(that.model).setProperty("size",result.size);
-				   that.element.find("#pagination").pagination("pageSize",result.total);
-		   });
-	};
 	
 	Template.prototype.openFile=function(){
 		this.fileSubmit.dialog("open");
@@ -94,6 +78,14 @@ define(function(require){
 				 action : "activate",
 				 includeProcessInstances: "true"
 			})
+		})
+	};
+	
+	//删除
+	Template.prototype.deleted=function(event,obj){
+		
+		$.post("flow/restService/putRestService",{
+			method:""
 		})
 	};
 	

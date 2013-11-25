@@ -12,26 +12,23 @@
 			    </ul>
        </div>
         <div class='container-fluid'>
-        <div class="widget-box">
-                            <div class="btn_table">
+          <div class="row-fluid">
+        <div class="span12" id="templateList"  data-path="templates" style="height:260px;">
+        <div class='datagrid-toolbar'>
                                 <a   event-click="openFile" class="btn"><i class="icon-plus"></i>流程部署</a>
 <!--                                  <a   class="btn hide" event-click="activate"><i class="icon-plus"></i>激活</a>
                                   <a   class="btn hide" event-click="suspend"><i class="icon-plus"></i>暂停</a> -->
-                            </div>
-                               <div id="templateList" class ="row-fluid tab-pane active" >
-                               
+                               </div>
 	                               <table class="table">
-											<thead><tr><th>序号</th><th>模板编号</th><th>模板名称</th><th>类型</th><th>版本号</th><th>操作</th>  </tr></thead>
+											<thead><tr><th width="40px">序号</th><th width="60">模板编号</th><th width="160">模板名称</th><th width="260">类型</th><th>版本号</th><th width="160">操作</th>  </tr></thead>
 											<tbody> 
 											{^{for templates.data}}
 											<tr><td>{{:#index+1}}</td><td>{{:key}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: version }}</td><td><a class="hide" event-click="startFlow">启动流程</a>
 											<a  event-click="viewFlow" class="btn">查看流程图</a></td></tr>
 											{^{/for}}
 											</tbody>
-											</table>
-		                              </div>
-                            <div id="pagination">
-                            </div>
+								</table>
+                       </div>
                        </div>
        
 	   </div>

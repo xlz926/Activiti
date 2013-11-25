@@ -13,6 +13,13 @@ var  stell={} ;
 						return {};
 					}
 			  },
+			  serialize:function(obj){
+				  var result =[];
+				  $.map(obj,function(v,k){
+					  result.push(k+"="+v);
+				  });
+				  return  result.join("&");
+			  },
 	         toString:function(obj){
 	        	 //对象转换成字符串
 	        	 return JSON.stringify(obj);

@@ -84,7 +84,19 @@ public class WebRestUtilTest {
 		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
 	     requestNode = objectMapper.createObjectNode();
 	      requestNode.put("processDefinitionKey", "oa_leave");
-	      requestNode.put("businessKey", "555554444");
-	      resource.post(requestNode);
+	      requestNode.put("businessKey", "4444444444444");
+	      try {
+	
+	    	  System.out.println(  objectMapper.readTree(resource.post(requestNode).getStream()) );
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

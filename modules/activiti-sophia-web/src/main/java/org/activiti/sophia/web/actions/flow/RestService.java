@@ -29,6 +29,8 @@ public class RestService {
 	@RequestMapping(value = "RestService", method = { RequestMethod.GET })
 	@ResponseBody
 	public JsonNode getRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
+		String params =request.getParameter("params");
+		if(params !=null)method=method+"?"+params;
 		return 	WebRestUtil.restGet(method);
 	}
 	
@@ -62,7 +64,7 @@ public class RestService {
 			Object params =request.getParameter("params");
 			 if(params !=null)requestNode = objectMapper.readTree(params.toString());
 			
-			 result =objectMapper.readTree(WebRestUtil.restPost(method, requestNode).getStream());
+			 result =objectMapper.readTree(WebRestUtil.restPut(method, requestNode).getStream());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,6 +94,23 @@ public class RestService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	@RequestMapping(value = "deleteRestService", method = {  RequestMethod.POST })
+	@ResponseBody
+	public JsonNode deleteRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
+		  JsonNode result =objectMapper.createObjectNode();
+		try {
+			result =  objectMapper.readTree(WebRestUtil.restDelete(method).getStream());
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	

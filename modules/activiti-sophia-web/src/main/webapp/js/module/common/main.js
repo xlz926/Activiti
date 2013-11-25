@@ -6,10 +6,12 @@ define(function(require, exports, module){
    
    
    stell.callbacks.add(function(context){
-	  
-	   context = context.jquery||$(context);
+	   context = context.jquery?context:$(context);
 	   context.find("[pagination]").each(function(){
-		   $(this).pagination(stell.util.eval($(this).Attr("pagination")));
+		   $(this).pagination(stell.util.eval($(this).attr("pagination")));
+	   });
+	   context.find("[datagrid]").each(function(){
+		   $(this).datagrid(stell.util.eval($(this).attr("datagrid")));
 	   });
    });
 /*   $("[npp-module]").livequery(function(){
@@ -25,7 +27,7 @@ define(function(require, exports, module){
    });*/
    
    var module;
-   $("#contentwrapper").on("click","[event-click]",function(event){
+   $("#contentwrapper").off().on("click","[event-click]",function(event){
  	  event.preventDefault();
     	 $.isFunction(module[$(this).attr("event-click")]) && module[$(this).attr("event-click")](event,$(this)[0]);
 	  });
@@ -36,6 +38,7 @@ define(function(require, exports, module){
 	   seajs.use($(this).attr("href"),function(md){
 		   if(md){
 			    module =  new md($("#contentwrapper"));
+			   // stell.callbacks.fire($("#contentwrapper"));
 		   }
 		
 	   });

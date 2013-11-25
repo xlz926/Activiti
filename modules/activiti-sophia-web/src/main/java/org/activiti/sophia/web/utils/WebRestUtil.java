@@ -44,6 +44,15 @@ public class WebRestUtil {
 	}
 	
 	
+	public static Representation restPut(String method,Object params){
+		return getAuthenticatedClient(method).put(params);
+	}
+	
+	
+	public static Representation restDelete(String method){
+		return getAuthenticatedClient(method).delete();
+	}
+	
 	
 	
 }

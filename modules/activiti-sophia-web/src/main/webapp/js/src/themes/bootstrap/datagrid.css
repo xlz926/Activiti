@@ -1,6 +1,8 @@
 .datagrid .panel-body {
   overflow: hidden;
   position: relative;
+  border: 1px solid #DDDDDD;
+  padding:2px;
 }
 .datagrid-view {
   position: relative;
@@ -90,7 +92,7 @@
 .datagrid-header-rownumber,
 .datagrid-cell-rownumber {
   margin: 0;
-  padding: 0 4px;
+  padding: 4px 4px;
   white-space: nowrap;
   word-wrap: normal;
   overflow: hidden;

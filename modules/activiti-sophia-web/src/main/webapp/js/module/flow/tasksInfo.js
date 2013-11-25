@@ -51,6 +51,21 @@ define(function(require){
 		     params:JSON.stringify(request)},this.loadData);
 	}
 	
+	Instance.prototype.deleted =function(event,obj){
+		var data =$.view(obj).data,
+	    request = {action:"complete",
+		          assignee:"kermit",
+		          variables:[{name:"auditPass",value:false,scope:"local",type:"boolean"},
+		                     {name:"options",value:"错误",type:"String"}]
+	              };
+	
+	   $.post("flow/restService/RestService",
+			{method:"sophia/task/"+data.id,
+		     params:JSON.stringify(request)},this.loadData);
+	}
+	
+	
+	
 	return Instance;
 	
 });
