@@ -20,9 +20,7 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	
 	@Test
 	public void test() {
-		
 	     try {
-	    	 
 	    	//System.out.println(taskQuery.getTaskList().size());
 	    	ServiceFactoryApplication test =new ServiceFactoryApplication();
 	        Map 	params =new HashMap(); 
@@ -32,9 +30,7 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	        List<String> group = new ArrayList<String>();
 	        group.add("deptLeader");
 	        params.put("candidateGroups", group);
-	      //  new Pagination(params);
-	    	System.out.println(test.createTaskQuery().listPage(params).size());
-	    	//test.createTaskQuery().list();
+	    	System.out.println(test.createTaskQuery().singleResult("1121"));
 	    	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

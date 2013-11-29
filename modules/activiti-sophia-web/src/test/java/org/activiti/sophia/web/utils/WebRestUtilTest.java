@@ -22,23 +22,25 @@ public class WebRestUtilTest {
 	@Test
 	public void completeTask() throws IOException {
 	
-       String url ="http://localhost:8081/activiti-rest/service/runtime/tasks/1306";
 
-		ClientResource resource = new ClientResource("http://172.16.8.89:7080/activiti-rest/service/sophia/task/{taskId}");
+		ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/sophia/task/418");
 		//ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
-		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
+		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
 		try {
 		
 			  requestNode = objectMapper.createObjectNode();
 		      ArrayNode variablesNode = objectMapper.createArrayNode();
+		      
 		      requestNode.put("action", "complete");
+		  	   requestNode.put("assignee", "admin");
+		      
 		      requestNode.put("variables", variablesNode);
 		      
 		      ObjectNode var1 = objectMapper.createObjectNode();
 		      variablesNode.add(var1);
-		      var1.put("name", "auditPass");
-		      var1.put("value", true);
-		      var1.put("type", "boolean");
+		      var1.put("name", "zhuban");
+		      var1.put("value", "主办协办测试");
+		      var1.put("type", "string");
 		      requestNode.put("variables", variablesNode);
 		      resource.post(requestNode);
 	
@@ -98,5 +100,29 @@ public class WebRestUtilTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	@Test
+	public void complate2(){
+		ClientResource resource = new ClientResource(
+				"http://172.16.8.89:7080/activiti-rest/service/sophia/task/960");
+		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
+
+		ObjectNode requestNode = new ObjectMapper().createObjectNode();
+
+		ArrayNode variablesNode = new ObjectMapper().createArrayNode();
+
+		requestNode.put("action", "complete");
+		requestNode.put("assignee", "kermit");
+		// 额外参数
+		ObjectNode var1 = new ObjectMapper().createObjectNode();
+		variablesNode.add(var1);
+		var1.put("name", "auditPass");
+		var1.put("value", true);
+		var1.put("type", "boolean");
+		requestNode.put("variables", variablesNode);
+
+		resource.post(requestNode);
 	}
 }

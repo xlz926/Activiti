@@ -12,6 +12,9 @@ import org.activiti.rest.service.api.runtime.task.TaskActionRequest;
 import org.activiti.rest.service.api.runtime.task.TaskBaseResource;
 import org.activiti.rest.service.api.runtime.task.TaskResponse;
 import org.activiti.rest.service.application.ActivitiRestServicesApplication;
+import org.activiti.sophia.workflow.persistence.impl.entity.TaskEntity;
+import org.activiti.sophia.workflow.service.ServiceFactoryApplication;
+import org.activiti.sophia.workflow.service.TaskQueryService;
 import org.restlet.data.Status;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
@@ -21,10 +24,12 @@ public class TaskActionResource extends TaskBaseResource {
 
 	
 	  @Get
-	  public TaskResponse getTask() {
+	  public TaskEntity  getTask() {
 	    if(!authenticate()) { return null; }
-	    return getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory()
-	            .createTaskResponse(this, getTaskFromRequest());
+	    String taskId = getAttribute("taskId");
+	    if(taskId==null){return null;} 
+	    TaskQueryService  taskQuery = ServiceFactoryApplication.createTaskQuery();
+	    return   taskQuery.singleResult(taskId);
 	  }
 	  
 	  @Post

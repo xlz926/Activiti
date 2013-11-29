@@ -20,8 +20,10 @@ import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.ActivitiObjectNotFoundException;
 import org.activiti.engine.form.FormData;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.activiti.rest.common.api.ActivitiUtil;
 import org.activiti.rest.common.api.SecuredResource;
+import org.activiti.rest.common.application.ActivitiRestApplication;
 import org.activiti.rest.service.api.runtime.process.ProcessInstanceResponse;
 import org.activiti.rest.service.application.ActivitiRestServicesApplication;
 import org.restlet.data.Form;
@@ -94,6 +96,12 @@ public class FormDataResource extends SecuredResource {
     }
     
     if (submitRequest.getTaskId() != null) {
+    	
+     Task task = ActivitiUtil.getTaskService().createTaskQuery().taskId(submitRequest.getTaskId()).singleResult();
+    
+     if(task!=null && task.getAssignee()==null){
+    	 ActivitiUtil.getTaskService().claim(task.getId(), ((ActivitiRestApplication) getApplication()).authenticate(getRequest(), getResponse()));
+     }
       ActivitiUtil.getFormService().submitTaskFormData(submitRequest.getTaskId(), propertyMap);
       return null;
     } else {

@@ -16,7 +16,7 @@ define(function(require){
 			   title:"流程模板上传",
 			   buttons:{"保存":function(){
 				   that.fileSubmit.ajaxSubmit({success:function(){
-					   that.loadData(that.model.templates.start,that.model.templates.size);
+					   that.templateList.datagrid("refresh");
 					   that.fileSubmit.dialog("close");
 				   }});
 			   }}
@@ -49,10 +49,11 @@ define(function(require){
 	
 	//查看流程模板
 	Template.prototype.viewFlow=function(event,obj){
-		var data =  $.view(obj).data;
-		var that =this ;
-		that.viewTemplate.html($("<img />").attr("src","flow/restService/getResource?deploymentId="+data.deploymentId+"&diagramResourceName="+data.diagramResourceName));
-		that.viewTemplate.dialog("open").dialog("option","title",data.name);
+		var data = this.templateList.datagrid("getSelected")[0];
+		if(data){
+			this.viewTemplate.html($("<img />").attr("src","flow/restService/getResource?deploymentId="+data.deploymentId+"&diagramResourceName="+data.diagramResourceName));
+			this.viewTemplate.dialog("open").dialog("option","title",data.name);
+		}
 	};
 	
 	//激活
@@ -84,9 +85,6 @@ define(function(require){
 	//删除
 	Template.prototype.deleted=function(event,obj){
 		
-		$.post("flow/restService/putRestService",{
-			method:""
-		})
 	};
 	
 	

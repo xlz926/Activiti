@@ -13,17 +13,19 @@
           <result property="description" column="description_" />
           <result property="createTime" column="create_time_" />
           <result property="dueDate" column="due_date_" />
-          <result property="processInstanceId" column="OWNER_" />
+          <result property="processInstanceId" column="PROC_INST_ID_" />
            <result property="businessKey" column="BUSINESS_KEY_" />
             <result property="procdefName" column="PROCDEF_NAME_" />
             <result property="assigneeName" column="ASSIGNEE_NAME_" />
             <result property="applyDate" column="APPLY_DATE_" />
+             <result property="startUserName" column="START_USER_NAME_" />
+             <result property="startUserId" column="START_USER_ID_" />
 	</resultMap>
 	
 	
 	<select id="listPage"  parameterType="java.util.Map"  resultMap="taskResultMap">
 	${limitBefore}
-	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_ ,EX.START_TIME_ APPLY_DATE_
+	 SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_ ,EX.START_TIME_ APPLY_DATE_ ,UU.FIRST_ START_USER_NAME_,EX.START_USER_ID_
 	 <if test=" assignee !=null">
 	 , (select ACT_ID_USER.ID_ from ACT_ID_USER  
     WHERE ACT_ID_USER.ID_= #{assignee}) ASSIGNEE_NAME_
@@ -39,9 +41,10 @@
 	</select>
 	
 	 <sql id="selectTaskByQuery">  
-     from ACT_RU_TASK RES
-    INNER JOIN ACT_HI_PROCINST EX ON  EX.ID_=RES.EXECUTION_ID_
-    INNER JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
+     FROM ACT_RU_TASK RES
+    LEFT JOIN ACT_HI_PROCINST EX ON  EX.ID_=RES.PROC_INST_ID_
+    LEFT JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
+      LEFT   JOIN  ACT_ID_USER UU ON   EX.START_USER_ID_ = UU.ID_
        <include refid="commonSelectTaskWhere"/>
     </sql>
 	
@@ -80,8 +83,13 @@
 	
 	
 	
-	 <select id="selectTask" parameterType="string" resultMap="taskResultMap">
-       select * from ACT_RU_TASK where ID_ = #{id}
+	 <select id="singleResult" parameterType="string" resultMap="taskResultMap">
+        SELECT RES.* ,EX.BUSINESS_KEY_ BUSINESS_KEY_ ,PR.NAME_ PROCDEF_NAME_ ,EX.START_TIME_ APPLY_DATE_,UU.FIRST_ START_USER_NAME_,EX.START_USER_ID_
+     FROM ACT_RU_TASK RES
+    LEFT JOIN ACT_HI_PROCINST EX ON  EX.ID_=RES.PROC_INST_ID_
+    LEFT JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
+      LEFT JOIN  ACT_ID_USER UU ON   EX.START_USER_ID_ = UU.ID_
+     where RES.ID_ = #{id}
      </select>
 	
 	

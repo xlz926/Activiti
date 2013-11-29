@@ -18,8 +18,28 @@ public class TaskEntity {
 	   private String assigneeName;
 	   private String procdefName;
 	   private Date  applyDate;
+	   private String startUserName;
+	   private String startUserId;
+	   
+	   
 
-	   public String getProcdefName() {
+	 public String getStartUserId() {
+		return startUserId;
+	}
+
+	public void setStartUserId(String startUserId) {
+		this.startUserId = startUserId;
+	}
+
+	public String getStartUserName() {
+		return startUserName;
+	}
+
+	public void setStartUserName(String startUserName) {
+		this.startUserName = startUserName;
+	}
+
+	public String getProcdefName() {
 		return procdefName;
 	}
 

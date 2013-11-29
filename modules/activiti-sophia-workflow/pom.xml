@@ -103,7 +103,6 @@
 	      <artifactId>activiti-common-rest</artifactId>
 	    </dependency>
 	
-	
 	    <dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>

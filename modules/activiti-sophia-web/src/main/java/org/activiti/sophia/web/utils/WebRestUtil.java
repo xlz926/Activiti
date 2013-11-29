@@ -18,7 +18,7 @@ public class WebRestUtil {
 	  
 	 public static ClientResource getAuthenticatedClient(String method) {
 		     ClientResource client = new ClientResource(preUrl+method);
-		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "kermit", "kermit");
+		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
 		    return client;
 		  }
 	 

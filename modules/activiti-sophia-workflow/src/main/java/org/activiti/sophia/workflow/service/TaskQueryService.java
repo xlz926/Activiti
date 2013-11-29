@@ -26,7 +26,9 @@ public class TaskQueryService implements Queryservice<TaskEntity>  {
 		return   taskquery.count(params);
 	}
 
-	
+	public TaskEntity singleResult(String taskId){
+		return taskquery.singleResult(taskId);
+	}
 
 	
 	

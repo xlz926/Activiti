@@ -184,7 +184,7 @@
 	        	  table.find("tr td").eq(i).wrapInner($("<div class='datagrid-cell'/>").width($(this).width()));
 	          })*/
       },
-      _request:function(index,pageSize){
+      _request:function(page){
     	  
       
             var param={},
@@ -196,8 +196,8 @@
             
             $.extend(param,model[opts.path].search);
             
-            if(index&&pageSize){
-            	$.extend(param,{params:stell.util.serialize({start:index*pageSize,size:pageSize })});
+            if(page){
+            	$.extend(param,{params:stell.util.serialize({start:(page.index-1)*page.size,size:page.size })});
             }
             if (!opts.url) {
             	return;

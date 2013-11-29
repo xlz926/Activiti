@@ -14,17 +14,19 @@
         <div class='container-fluid'>
           <div class="row-fluid">
         <div class="span12" id="templateList"  data-path="templates" style="height:260px;">
-        <div class='datagrid-toolbar'>
+        <div class='datagrid-toolbar btn-group'>
                                 <a   event-click="openFile" class="btn"><i class="icon-plus"></i>流程部署</a>
+                                <a  event-click="viewFlow" class="btn">查看流程图</a>
+                                <a class="hide" event-click="startFlow">启动流程</a>
 <!--                                  <a   class="btn hide" event-click="activate"><i class="icon-plus"></i>激活</a>
                                   <a   class="btn hide" event-click="suspend"><i class="icon-plus"></i>暂停</a> -->
                                </div>
 	                               <table class="table">
-											<thead><tr><th width="40px">序号</th><th width="60">模板编号</th><th width="160">模板名称</th><th width="260">类型</th><th>版本号</th><th width="160">操作</th>  </tr></thead>
+											<thead><tr><th width="40px">序号</th><th width="60">模板编号</th><th width="160">模板名称</th><th width="260">类型</th><th>版本号</th>  </tr></thead>
 											<tbody> 
 											{^{for templates.data}}
-											<tr><td>{{:#index+1}}</td><td>{{:key}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: version }}</td><td><a class="hide" event-click="startFlow">启动流程</a>
-											<a  event-click="viewFlow" class="btn">查看流程图</a></td></tr>
+											<tr><td>{{:#index+1}}</td><td>{{:key}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: version }}</td>
+											</tr>
 											{^{/for}}
 											</tbody>
 								</table>

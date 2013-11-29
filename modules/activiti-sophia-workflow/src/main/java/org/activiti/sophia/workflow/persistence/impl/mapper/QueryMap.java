@@ -10,5 +10,12 @@ public interface   QueryMap<T> {
 		public   T singleResult(String id) ;
 
 		public List<T> listPage(Map params);
+		
+		public int insertEntity(T entity);
+		
+		public int deleteEntity(String Id);
+		
+		public int updateEntity(T entity);
+		
 
 }

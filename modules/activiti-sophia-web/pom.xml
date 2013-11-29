@@ -5,7 +5,9 @@
 
 	<name>Activiti - sophia web</name>
 	<artifactId>activiti-sophia-web</artifactId>
-
+     <packaging>war</packaging>
+     
+     
 	<parent>
 		<groupId>org.activiti</groupId>
 		<artifactId>activiti-root</artifactId>

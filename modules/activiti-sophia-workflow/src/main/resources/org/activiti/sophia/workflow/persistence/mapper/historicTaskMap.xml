@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.activiti.sophia.workflow.persistence.impl.mapper.HistoricTaskQueryMap">
+
+  <resultMap id="historicTaskResultMap" type="org.activiti.sophia.workflow.persistence.impl.entity.HistoricTaskEntity">
+    <id property="id" column="ID_" jdbcType="VARCHAR" />
+    <result property="processDefinitionId" column="PROC_DEF_ID_" jdbcType="VARCHAR" />
+    <result property="processInstanceId" column="PROC_INST_ID_" jdbcType="VARCHAR" />
+    <result property="executionId" column="EXECUTION_ID_" jdbcType="VARCHAR" />
+    <result property="name" column="NAME_" jdbcType="VARCHAR" />
+    <result property="parentTaskId" column="PARENT_TASK_ID_" jdbcType="VARCHAR" />
+    <result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+    <result property="owner" column="OWNER_" jdbcType="VARCHAR" />
+    <result property="assignee" column="ASSIGNEE_" jdbcType="VARCHAR" />
+    <result property="startTime" column="START_TIME_" jdbcType="TIMESTAMP" />
+    <result property="claimTime" column="CLAIM_TIME_" jdbcType="TIMESTAMP" />
+    <result property="endTime" column="END_TIME_" jdbcType="TIMESTAMP" />
+    <result property="durationInMillis" column="DURATION_" jdbcType="BIGINT" />
+    <result property="deleteReason" column="DELETE_REASON_" jdbcType="VARCHAR" />
+    <result property="taskDefinitionKey" column="TASK_DEF_KEY_" jdbcType="VARCHAR" />
+    <result property="formKey" column="FORM_KEY_" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY_" jdbcType="INTEGER" />
+    <result property="dueDate" column="DUE_DATE_" jdbcType="TIMESTAMP" />
+     <result property="businessKey" column="BUSINESS_KEY_"  jdbcType="VARCHAR"/>
+     <result property="procdefName" column="PROCDEF_NAME_" jdbcType="VARCHAR" />
+     <result property="assigneeName" column="ASSIGNEE_NAME_" jdbcType="VARCHAR"/>
+     <result property="applyDate" column="APPLY_DATE_" jdbcType="TIMESTAMP"/>
+       <result property="startUserName" column="START_USER_NAME_" />
+        <result property="startUserId" column="START_USER_ID_" />
+  </resultMap>
+
+		<select id="listPage"  parameterType="java.util.Map"  resultMap="historicTaskResultMap">
+	${limitBefore}
+	SELECT RES.* , PR.NAME_ PROCDEF_NAME_,US.FIRST_  ASSIGNEE_NAME_,EX.START_TIME_ APPLY_DATE_,  EX.BUSINESS_KEY_, 
+	UU.FIRST_ START_USER_NAME_ , EX.START_USER_ID_ 
+	    <include refid="selectTaskByQuery"/>
+	    ${orderBy}
+	  ${limitAfter}
+	</select>
+	 <select id="count" parameterType="java.util.Map" resultType="long">
+	  select count(distinct RES.ID_)
+        <include refid="selectTaskByQuery"/>
+	</select>
+	
+	 <sql id="selectTaskByQuery">  
+		FROM ACT_HI_TASKINST RES
+		  LEFT  JOIN ACT_HI_PROCINST EX ON  EX.ID_=RES.PROC_INST_ID_
+		   LEFT  JOIN ACT_RE_PROCDEF PR ON PR.ID_ = RES.PROC_DEF_ID_
+		  LEFT  JOIN ACT_ID_USER US ON US.ID_=RES.ASSIGNEE_
+	      LEFT   JOIN  ACT_ID_USER UU ON   EX.START_USER_ID_ = UU.ID_
+       <include refid="commonSelectTaskWhere"/>
+    </sql>
+	<sql id="commonSelectTaskWhere">
+	 <where> 
+	     RES.END_TIME_ is not null
+	    <if test=" assignee !=null">
+	      and    RES.ASSIGNEE_= #{assignee}
+         </if>
+         <if test=" processInstanceId !=null">
+	        and   RES.PROC_INST_ID_= #{processInstanceId} and RES.ASSIGNEE_ is not NULL
+         </if>
+	 </where>
+	 </sql>
+	</mapper>

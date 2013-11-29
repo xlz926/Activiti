@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.activiti.sophia.workflow.persistence.impl.mapper.DelegateQueryMap">
+
+  <resultMap id="delegateResultMap" type="org.activiti.sophia.workflow.persistence.impl.entity.DelegateEntity">
+    <id property="id" column="ID_" jdbcType="VARCHAR" />
+    <id property="procDefId" column="PROC_DEF_ID" jdbcType="VARCHAR" />
+    <id property="startTime" column="START_TIME" jdbcType="TIMESTAMP" />
+    <id property="endTime" column="END_TIME" jdbcType="TIMESTAMP" />
+    <id property="assignee" column="ASSIGNEE_" jdbcType="VARCHAR" />
+    <id property="assigneeName" column="ASSIGNEE_NAME_" jdbcType="VARCHAR" />
+    <id property="userName" column="USER_NAME_" jdbcType="VARCHAR" />
+    <id property="uesrId" column="UESR_ID_" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insertEntity" parameterType="org.activiti.sophia.workflow.persistence.impl.entity.DelegateEntity" >
+    INSERT INTO  ACT_RU_DELEGATE (ID_, PROC_DEF_ID, START_TIME, END_TIME, ASSIGNEE_, ASSIGNEE_NAME_, USER_NAME_, UESR_ID_)
+    VALUES (#{id, jdbcType=VARCHAR},
+            #{procDefId, jdbcType=VARCHAR},
+            #{startTime, jdbcType=TIMESTAMP},
+            #{endTime, jdbcType=TIMESTAMP},
+            #{assigneeName, jdbcType=INTEGER},
+            #{assignee, jdbcType=TIMESTAMP},
+            #{userName, jdbcType=VARCHAR},
+            #{uesrId, jdbcType=VARCHAR}
+           )
+  </insert>
+  
+  <update id="updateEntity" parameterType="org.activiti.sophia.workflow.persistence.impl.entity.DelegateEntity">
+    UPDATE ACT_RU_DELEGATE
+    <set>
+      PROC_DEF_ID = #{procDefId, jdbcType=VARCHAR},
+      START_TIME = #{startTime, jdbcType=TIMESTAMP},
+      END_TIME = #{endTime, jdbcType=TIMESTAMP},
+      ASSIGNEE_ = #{assignee, jdbcType=VARCHAR},
+      ASSIGNEE_NAME_ = #{assigneeName, jdbcType=VARCHAR},
+      USER_NAME_ = #{userName, jdbcType=VARCHAR},
+      UESR_ID_ = #{uesrId, jdbcType=VARCHAR}
+    </set>
+     WHERE ID_=#{id, jdbcType=VARCHAR}
+  </update>
+  <delete id="deleteEntity">
+    DELETE  FROM  ACT_RU_DELEGATE RES where RES.ID_ = #{id}
+  </delete>
+
+    <select id="listPage"  parameterType="java.util.Map"  resultMap="delegateResultMap">
+	${limitBefore}
+	SELECT   RES.* 
+	    <include refid="selectTaskByQuery"/>
+	    ${orderBy}
+	  ${limitAfter}
+	</select>
+	
+	 <select id="count" parameterType="java.util.Map" resultType="long">
+	  select count(distinct RES.ID_)
+        <include refid="selectTaskByQuery"/>
+	</select>
+	
+	 <sql id="selectTaskByQuery">  
+		FROM ACT_RU_DELEGATE RES
+       <include refid="commonSelectTaskWhere"/>
+    </sql>
+	<sql id="commonSelectTaskWhere">
+	 <where> 
+	    <if test=" uesrId !=null">
+	         RES.UESR_ID_= #{uesrId}
+         </if>
+	 </where>
+	 </sql>
+	 
+	 <select id="singleResult" parameterType="string" resultMap="delegateResultMap">
+        SELECT RES.*  FROM ACT_RU_DELEGATE RES where RES.ID_ = #{id}
+     </select>
+	</mapper>
