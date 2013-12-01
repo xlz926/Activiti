@@ -1,4 +1,4 @@
-package org.activiti.sophia.workflow.Listener;
+package org.activiti.sophia.workflow.bpmservice.listener;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;

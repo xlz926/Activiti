@@ -1,4 +1,4 @@
-package org.activiti.sophia.workflow.Listener;
+package org.activiti.sophia.workflow.bpmservice.listener;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
@@ -21,11 +21,6 @@ public class DraftListener implements TaskListener{
     	  delegateTask.setVariable("isDraft", false);
       }
 		
-       //设置申请人
-      Object applyUserId =  delegateTask.getVariable("applyUserId");
-      if(applyUserId!=null){
-    	  delegateTask.setOwner(applyUserId.toString());
-      }
 	}
 
 }

@@ -1,0 +1,58 @@
+	<div class="main_content" >
+       <div id="jCrumbs" class="breadCrumb module">
+			    <ul>
+			        <li>
+			            <a href="#"><i class="icon-home">流程管理</i></a>
+			        </li>
+			        <li>
+			            <a href="#">模板管理</a>
+			        </li>
+			    </ul>
+       </div>
+        <div class='container-fluid'>
+		<div class="row-fluid">
+			<div class="span12" id="instanceList" data-path="instances"
+				style="height: 460px;" url="history/historic-process-instances">
+				<div class='datagrid-toolbar btn-group'>
+					<a event-click="showTask" class="btn">查看处理过程</a>
+					<a event-click="showDiagram" class="btn">查看跟踪图</a>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th width="40px">序号</th>
+							<th width="50">实例编号</th>
+							<th>流程业务单据编号</th>
+							<th width="150">流程定义ＩＤ</th>
+						</tr>
+					</thead>
+					<tbody>
+						{^{for instances.data}}
+						<tr>
+							<td>{{:#index+1}}</td>
+							<td>{{:id}}</td>
+							<td>{{:businessKey}}</td>
+							<td>{{:processDefinitionId}}</td>
+						</tr>
+						{{/for}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="history"> 
+	   <ul class="nav" >
+	   {^{for historyTask.data}}
+	   <li>{{:name}}</li>
+	   {{/for}}
+	   </ul>
+	</div>
+	
+	<div id="diagram">
+	</div>
+	
+   </div>
+
+

@@ -19,8 +19,10 @@ import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.ActivitiObjectNotFoundException;
+import org.activiti.engine.impl.ProcessEngineImpl;
 import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.bpmn.diagram.ProcessDiagramGenerator;
+import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -56,6 +58,10 @@ public class ProcessInstanceDiagramResource extends SecuredResource {
 
     if (pde != null && pde.isGraphicalNotationDefined()) {
       BpmnModel bpmnModel = ActivitiUtil.getRepositoryService().getBpmnModel(pde.getId());
+      
+      ProcessEngineImpl defaultProcessEngine = (ProcessEngineImpl) ActivitiUtil.getProcessEngine();
+      Context.setProcessEngineConfiguration(defaultProcessEngine.getProcessEngineConfiguration());
+      
       InputStream resource = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", ActivitiUtil.getRuntimeService().getActiveActivityIds(processInstanceId));
 
       InputRepresentation output = new InputRepresentation(resource, MediaType.IMAGE_PNG);
