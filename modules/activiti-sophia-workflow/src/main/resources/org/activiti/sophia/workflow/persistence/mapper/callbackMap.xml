@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.activiti.sophia.workflow.persistence.impl.mapper.CallbackMap">
+
+  <update id="updateEntity"   parameterType="org.activiti.sophia.workflow.persistence.impl.entity.CallbackEntity" >
+    UPDATE ${tableName}
+    <set>
+      STATUS = #{status, jdbcType=VARCHAR}
+    </set>
+     WHERE id=#{bussnesKey, jdbcType=VARCHAR}
+  </update>
+
+ <update id="updateUserStatus"   parameterType="string" >
+    update emp_employee  
+    <set>
+      state = 'STATE.5'
+    </set>
+     WHERE id=(SELECT uu.employee_id FROM EIS_USER uu where  uu.user_name=#{userId, jdbcType=VARCHAR})
+  </update>
+</mapper>
