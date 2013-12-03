@@ -17,7 +17,6 @@ import org.springframework.test.context.ContextConfiguration;
 public class TaskQueryTest  extends SpringTransactionalTest {
 
 
-	
 	@Test
 	public void test() {
 	     try {

@@ -3,8 +3,6 @@ define(function(require){
 	
 	function Index(self){
 		var that =this;
-		
-		
 		$('#side_accordion .accordion-toggle').click(function(e){
 			   e.preventDefault();
 			   var   thisAccordion = $(this).closest(".accordion-group");
@@ -18,16 +16,6 @@ define(function(require){
 			 
 			});
 	}
-	
-	Index.prototype.load=function(){
-		
-	};
-	
-	
-	
-
-	
-	
 	
 	return Index;
 	 

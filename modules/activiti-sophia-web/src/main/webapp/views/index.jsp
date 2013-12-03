@@ -56,9 +56,9 @@
 								<div class="accordion-inner">
 									<ul class="nav nav-list">
 										<li><a href="js/module/flow/templatesInfo" class='ajaxMenu'>流程模板</a></li>
-										<li><a href="#views/flow/instancesInfo.jsp" class='ajaxMenu'>流程实例</a></li>
-										<li><a href="js/module/flow/tasksInfo" class='ajaxMenu'>待办任务</a></li>
-										<li><a href="#views/flow/doneTasks.jsp" class='ajaxMenu'>已办任务</a></li>
+										<li><a href="js/module/flow/instancesInfo" class='ajaxMenu'>流程实例</a></li>
+								<!-- 		<li><a href="js/module/flow/tasksInfo" class='ajaxMenu'>待办任务</a></li>
+										<li><a href="#views/flow/doneTasks.jsp" class='ajaxMenu'>已办任务</a></li> -->
 									</ul>
 								</div>
 							</div>

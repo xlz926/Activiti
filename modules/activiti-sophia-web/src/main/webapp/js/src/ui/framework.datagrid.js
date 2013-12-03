@@ -185,22 +185,22 @@
 	          })*/
       },
       _request:function(page){
+    	
     	  
       
-            var param={},
+            var param={method:this.options.url},
                 that = this,
                 grid =this.element,
                 wrap = $('.datagrid-wrap', grid),
                 opts =this.options,
                 model =$.view(this.element).data;
             
-            $.extend(param,model[opts.path].search);
+            if (!this.options.url) {
+            	return;
+            }
             
             if(page){
             	$.extend(param,{params:stell.util.serialize({start:(page.index-1)*page.size,size:page.size })});
-            }
-            if (!opts.url) {
-            	return;
             }
            
 
@@ -221,7 +221,7 @@
      
             $.ajax({
                 type: opts.method,
-                url: opts.url,
+                url: 'flow/restService/RestService',
                 data: param,
                 dataType: 'json',
                 success: function (result) {

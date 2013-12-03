@@ -5,13 +5,12 @@ define(function(require){
 		this.tmpl = $.templates(require("pages/org/groupInfo.html")),
 		this.element  =content.jquery?content:$(content),
 		this.model={role:{},
-				roles:{data:[],search:{method:"identity/groups"}},
-				users:{data:[],search:{method:"identity/users"}},
-				userList:{data:[],search:{method:"identity/users"}}},
+				roles:{data:[]},
+				users:{data:[]},
+				userList:{data:[]}},
 		this.element.link( this.tmpl,this.model);
 		this.editFormPage =this.element.find("#groupEdit");
 		this.rolesList = this.element.find("#rolesList").datagrid({
-			url:"flow/restService/RestService",
 			onClickRow:function(event,data){
 			 	$.get("flow/restService/RestService",{
 					method:"identity/users?memberOfGroup="+data.id

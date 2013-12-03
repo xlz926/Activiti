@@ -12,15 +12,28 @@ import org.restlet.resource.ResourceException;
 
 public class WebRestUtil {
 
+	
+	 private static String  preUrl;
+	
+	static {
+		PropertiesLoader proper =new PropertiesLoader("classpath:jdbc.properties");
+		preUrl = proper.getProperty("activiti.rest.service.url");
+	}
+	
 	//private static String  preUrl ="http://172.16.8.89:7080/activiti-rest/service/";
-	private static String  preUrl ="http://localhost:8081/activiti-rest/service/";
+
+	 
+	 
+	 
+	 
+	 
 	 protected static ObjectMapper objectMapper = new ObjectMapper();
-	  
+	// PropertyFileUtil.get("activiti.rest.service.url")
 	 public static ClientResource getAuthenticatedClient(String method) {
 		     ClientResource client = new ClientResource(preUrl+method);
 		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
 		    return client;
-		  }
+     }
 	 
 	 
 	public static JsonNode restGet(String method){

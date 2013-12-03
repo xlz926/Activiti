@@ -10,6 +10,7 @@ import org.activiti.sophia.web.utils.WebRestUtil;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,6 +82,26 @@ public class RestService {
 		try {
 			
 			InputStream  resourceAsStream = WebRestUtil.getAuthenticatedClient("repository/deployments/"+deploymentId+"/resourcedata/"+diagramResourceName).get().getStream();
+			
+			 byte[] b = new byte[1024];
+			    int len = -1;
+			    while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+			      response.getOutputStream().write(b, 0, len);
+			    }
+			
+		} catch (ResourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "getinstancesImg", method = {  RequestMethod.GET })
+	public void getinstancesImg(HttpServletRequest request,HttpServletResponse response,@RequestParam("processInstanceId") String processInstanceId){
+		try {
+			InputStream  resourceAsStream = WebRestUtil.getAuthenticatedClient("process-instance/"+processInstanceId+"/diagram").get().getStream();
 			 byte[] b = new byte[1024];
 			    int len = -1;
 			    while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {

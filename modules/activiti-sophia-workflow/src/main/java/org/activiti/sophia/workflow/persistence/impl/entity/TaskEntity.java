@@ -20,10 +20,19 @@ public class TaskEntity {
 	   private Date  applyDate;
 	   private String startUserName;
 	   private String startUserId;
+	   private String procDefId;
 	   
 	   
 
-	 public String getStartUserId() {
+	 public String getProcDefId() {
+		return procDefId;
+	}
+
+	public void setProcDefId(String procDefId) {
+		this.procDefId = procDefId;
+	}
+
+	public String getStartUserId() {
 		return startUserId;
 	}
 

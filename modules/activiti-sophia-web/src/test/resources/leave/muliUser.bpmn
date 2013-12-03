@@ -9,15 +9,17 @@
     </userTask>
     <sequenceFlow id="flow1" sourceRef="start" targetRef="usertask1"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
-    <userTask id="usertask4" name="人事审核" activiti:assignee="hrUser" activiti:candidateUsers="manageUser,leaderUser" activiti:candidateGroups="hr">
+    <userTask id="usertask4" name="人事审核" activiti:assignee="${assignee}" activiti:candidateUsers="manageUser,leaderUser" activiti:candidateGroups="hr">
       <extensionElements>
         <activiti:formProperty id="reason" name="审核意见" type="string"></activiti:formProperty>
         <activiti:formProperty id="kermitPass" name="审核" type="enum">
           <activiti:value id="true" name="同意"></activiti:value>
           <activiti:value id="false" name="不同意"></activiti:value>
         </activiti:formProperty>
-        <activiti:taskListener event="create" class="org.activiti.sophia.workflow.Listener.MultiUserListener"></activiti:taskListener>
       </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="${Arrays.asList(&quot;hrUser&quot;, &quot;leaderUser&quot;, &quot;fozzie&quot;)}" activiti:elementVariable="assignee">
+        <completionCondition>${completionCondition.canComplete(execution,assignee,"hrUser")}</completionCondition>
+      </multiInstanceLoopCharacteristics>
     </userTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow8" sourceRef="usertask4" targetRef="exclusivegateway1"></sequenceFlow>
@@ -28,20 +30,18 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${kermitPass == 'false'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow13" sourceRef="usertask1" targetRef="usertask4"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="true"></scriptTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_poc_leave">
     <bpmndi:BPMNPlane bpmnElement="poc_leave" id="BPMNPlane_poc_leave">
       <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
         <omgdc:Bounds height="55.0" width="105.0" x="70.0" y="135.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
-        <omgdc:Bounds height="55.0" width="105.0" x="330.0" y="75.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="300.0" y="322.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
-        <omgdc:Bounds height="55.0" width="105.0" x="265.0" y="130.0"></omgdc:Bounds>
+        <omgdc:Bounds height="55.0" width="105.0" x="275.0" y="135.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
         <omgdc:Bounds height="40.0" width="40.0" x="297.0" y="240.0"></omgdc:Bounds>
@@ -49,12 +49,15 @@
       <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
         <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="145.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="110.0" y="215.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="35.0" y="162.0"></omgdi:waypoint>
         <omgdi:waypoint x="70.0" y="162.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
-        <omgdi:waypoint x="317.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="327.0" y="190.0"></omgdi:waypoint>
         <omgdi:waypoint x="317.0" y="240.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
@@ -73,7 +76,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
         <omgdi:waypoint x="175.0" y="162.0"></omgdi:waypoint>
-        <omgdi:waypoint x="265.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="275.0" y="162.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

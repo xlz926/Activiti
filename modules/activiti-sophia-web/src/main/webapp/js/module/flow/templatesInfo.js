@@ -2,9 +2,8 @@ define(function(require){
 	
 	function Template(content){
     	var	that =this ;
-		this.url ="flow/restService/RestService" ,
 	    this.element =content,
-		this.model = {templates:{data:[],search:{method:"process-definitions"}}},
+		this.model = {templates:{data:[]}},
 		this.tmpl =  $.templates(require("pages/flow/templatesInfo.html")),
 		this.element.link(this.tmpl,this.model),
 		this.viewTemplate =this.element.find("#templateImg").dialog({
@@ -21,11 +20,8 @@ define(function(require){
 				   }});
 			   }}
 		   });
-		this.templateList =this.element.find("#templateList").datagrid({
-			url:"flow/restService/RestService"
-		});
+		this.templateList =this.element.find("#templateList").datagrid();
 	}
-	
 	
 	
 	Template.prototype.openFile=function(){

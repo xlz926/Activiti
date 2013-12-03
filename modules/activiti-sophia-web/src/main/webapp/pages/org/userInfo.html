@@ -13,15 +13,18 @@
        
         <div class='container-fluid'>
           <div class ="row-fluid">
-         <div class="span12"  id ="userList"   url="flow/restService/RestService" data-path="users" style="height:250px">
-                            <div class="datagrid-toolbar">
+         <div class="span12"  id ="userList"   url="identity/users" data-path="users" style="height:350px">
+                            <div class="datagrid-toolbar btn-group">
                                 <a id ="openFile" class="btn" event-click="addUser"><i class="icon-plus" ></i>新增用户</a>
+                                <a id ="openFile" class="btn" event-click="editUser"><i class="icon-inbox" ></i>修改用户</a>
+                                <a id ="openFile" class="btn" event-click="deleteUser"><i class="icon-remove" ></i>删除用户</a>
                             </div>
                                <table class="table">
-								<thead><tr><th  width="40px">序号</th><th width="60px">用户编号</th><th  >用户名称</th><th  >别名</th><th  >邮件地址</th> </tr></thead>
+								<thead><tr><th  width="40px">序号</th><th width="60px">用户编号</th><th  >用户名称</th><th  >别名</th><th  >邮件地址</th> <th  >密码</th></tr></thead>
 								<tbody> 
 								{^{for users.data}}
-								     <tr><td>{{:#index}} <input type="checkbox" class="datagrid-cell-check"/></td><td>{{:id}}</td><td>{{:firstName}}</td><td>{{:lastName}}</td><td>{{: email }}</td></tr>
+								     <tr><td>{{:#index}} <input type="checkbox" class="datagrid-cell-check"/></td><td>{{:id}}</td><td>{{:firstName}}</td>
+								     <td>{{:lastName}}</td><td>{{: email }}</td><td>{{: password }}</td></tr>
 								  {^{/for}}
 								</tbody>
 								</table>

@@ -13,7 +13,7 @@
        
         <div class='container-fluid'>
         <div class="row-fluid">
-        <div class="span8" id="rolesList"   data-path="roles" style="height:260px;">
+        <div class="span8" id="rolesList"   data-path="roles" style="height:460px;" url="identity/groups">
                             <div class="datagrid-toolbar btn-group">
                                 <a  event-click='addRole' class="btn"><i class="icon-plus"></i>新增角色</a>
                                 <a  event-click='editRole' class="btn"><i class="icon-inbox"></i>编辑角色</a>
@@ -100,7 +100,7 @@
 					</fieldset>
 				</form>
 	   
-	   <div id="userList" url="flow/restService/RestService" data-path="userList" style="height:260px;width:450px;">
+	   <div id="userList" url="identity/users" data-path="userList" style="height:260px;width:450px;">
 	            <table class="table">
 								<thead><tr><th  width="40px">序号</th><th width="60px">用户编号</th><th  >用户名称</th><th  >别名</th><th  >邮件地址</th> </tr></thead>
 								<tbody> 

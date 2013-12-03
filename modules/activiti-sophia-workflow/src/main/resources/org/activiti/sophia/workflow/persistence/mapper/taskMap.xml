@@ -14,6 +14,7 @@
           <result property="createTime" column="create_time_" />
           <result property="dueDate" column="due_date_" />
           <result property="processInstanceId" column="PROC_INST_ID_" />
+          <result property="procDefId" column="proc_def_id_" />
            <result property="businessKey" column="BUSINESS_KEY_" />
             <result property="procdefName" column="PROCDEF_NAME_" />
             <result property="assigneeName" column="ASSIGNEE_NAME_" />
@@ -60,20 +61,23 @@
         and RES.NAME_ like #{nameLike}
       </if>
        <if test=" assignee !=null">
-         and (
-              RES.ASSIGNEE_ = #{assignee} or (RES.ASSIGNEE_ is null AND RES.ID_ IN (SELECT I.TASK_ID_
-                                                                                                          from ACT_RU_IDENTITYLINK I
-                                                                                                         where I.TYPE_ =
-                                                                                                               'candidate'
-                                                                                                           and (I.USER_ID_ =
-                                                                                                               #{assignee} or
-                                                                                                               I.GROUP_ID_ IN
-                                                                                                               (SELECT men.GROUP_ID_
-                                                                                                                   from ACT_ID_MEMBERSHIP men
-                                                                                                                  where men.USER_ID_ =
-                                                                                                                        #{assignee}))))
-                          )                                
-             
+         and  (RES.ASSIGNEE_ = #{assignee} or  RES.ASSIGNEE_ in ( select gate.assignee_   from act_ru_delegate gate where gate.uesr_id_= #{assignee} and gate.start_time &lt; sysdate and gate.end_time &gt; sysdate) or
+       (RES.ASSIGNEE_ is null AND
+       RES.ID_ IN
+       (SELECT I.TASK_ID_
+            from ACT_RU_IDENTITYLINK I
+           where I.TYPE_ = 'candidate'
+             and (I.USER_ID_ = 'hrUser' or  RES.ASSIGNEE_ in ( select gate.assignee_   from act_ru_delegate gate where gate.uesr_id_= #{assignee} and gate.start_time &lt; sysdate and gate.end_time &gt; sysdate) or 
+                 
+                 I.GROUP_ID_ IN
+                 (SELECT men.GROUP_ID_
+                     from ACT_ID_MEMBERSHIP men
+                    where men.USER_ID_ = #{assignee}
+                  union
+                  select men.GROUP_ID_
+                     from ACT_ID_MEMBERSHIP men
+                     where men.user_id_ in  ( select gate.assignee_   from act_ru_delegate gate where gate.uesr_id_= #{assignee} and gate.start_time &lt; sysdate and gate.end_time &gt;  sysdate)
+                    )))))
        </if>
  
 	</where>

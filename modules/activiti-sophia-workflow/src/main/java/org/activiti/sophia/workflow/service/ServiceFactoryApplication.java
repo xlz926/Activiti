@@ -23,9 +23,10 @@ public class ServiceFactoryApplication implements ApplicationContextAware{
 		return  applicationContext.getBean(HistoricTaskQueryService.class);
 	}
 	
-	public static DelegateService createDelegateService(){
-		return  applicationContext.getBean(DelegateService.class);
+	public static CallbackService createCallbackService(){
+		return  applicationContext.getBean(CallbackService.class);
 	}
+	
 }
 	
 	
