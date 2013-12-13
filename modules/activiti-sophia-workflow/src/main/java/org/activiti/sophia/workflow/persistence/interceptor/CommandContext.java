@@ -17,7 +17,6 @@ import java.util.Map;
 
 import org.activiti.sophia.workflow.persistence.cfg.TransactionContext;
 import org.activiti.sophia.workflow.persistence.db.DbSqlSession;
-import org.activiti.sophia.workflow.persistence.impl.entity.UserEntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -141,7 +140,5 @@ public class CommandContext {
     return exception;
   }
   
-  public UserEntityManager getUserEntityManager() {
-	    return getSession(UserEntityManager.class);
- }
+
 }

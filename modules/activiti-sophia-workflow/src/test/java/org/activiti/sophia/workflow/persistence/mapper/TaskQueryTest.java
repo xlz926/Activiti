@@ -21,7 +21,6 @@ public class TaskQueryTest  extends SpringTransactionalTest {
 	    	 
 	    	//System.out.println(taskQuery.getTaskList().size());
 	    	ServiceFactoryApplication test =new ServiceFactoryApplication();
-	    	System.out.println(test.createTaskQuery());
 	    	//test.createTaskQuery().list();
 	    	
 		} catch (Exception e) {
