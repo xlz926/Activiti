@@ -26,7 +26,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
       <context:property-placeholder ignore-resource-not-found="true"
-			location=" classpath:/application.test.properties" />
+			location=" classpath:/jdbc.properties" />
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 			<!-- Connection Info -->
 			<property name="driverClassName" value="${jdbc.driver}" />
@@ -46,5 +46,23 @@
         <property name="typeAliasesPackage" value="org.activiti.sophia.workflow.persistence.impl.entity" />
         <property name="mapperLocations" value="classpath*:org/activiti/sophia/workflow/persistence/mapper/*Map.xml" />
     </bean>
+    
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="mailServerHost" value="localhost" />
+		<property name="mailServerPort" value="5025" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="history" value="full" />
+        <property name="activityFontName" value="宋体"></property>
+        <property name="labelFontName" value="宋体"></property>
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+	
+
 		
 </beans>

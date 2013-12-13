@@ -23,7 +23,7 @@ public class WebRestUtilTest {
 	public void completeTask() throws IOException {
 	
 
-		ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/sophia/task/557");
+		ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/sophia/task/1618");
 		//ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
 		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
 		try {
@@ -83,18 +83,17 @@ public class WebRestUtilTest {
 	public void start(){
 		ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/process-instances");
 	  //ClientResource resource = new ClientResource("http://localhost:8081/activiti-rest/service/runtime/tasks/1306");  
-		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "zhangsan", "000000");
+		resource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
 	     requestNode = objectMapper.createObjectNode();
-	      requestNode.put("processDefinitionKey", "poc_explane");
-	      requestNode.put("businessKey", "sqldddd");
+	      requestNode.put("processDefinitionKey", "wf_leave1");
+	      requestNode.put("businessKey", "d5544rr599");
 	   
 	      ArrayNode variablesNode = objectMapper.createArrayNode();
 	      requestNode.put("variables", variablesNode);
 	      ObjectNode var1 = objectMapper.createObjectNode();
 	      variablesNode.add(var1);
-	      var1.put("name", "auditPass");
-	      var1.put("value", "会签测试");
-	      
+	      var1.put("name", "urlRoot");
+	      var1.put("value", "http");
 	      
 	      try {
 	    	  System.out.println(objectMapper.readTree(resource.post(requestNode).getStream()) );

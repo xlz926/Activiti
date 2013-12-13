@@ -21,6 +21,6 @@ public class Login {
 	public String Login(HttpServletRequest request, HttpSession session, Model model) {
 		session.setAttribute("username",request.getAttribute("username"));
 		session.setAttribute("password",request.getAttribute("password"));
-		return "index";
+		return "redirect:/index";
 	}
 }

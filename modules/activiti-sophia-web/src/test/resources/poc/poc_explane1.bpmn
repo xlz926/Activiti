@@ -3,7 +3,7 @@
   <process id="poc_explane" name="员工离职流程" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="applyUserId"></startEvent>
     <endEvent id="endevent1" name="End"></endEvent>
-    <serviceTask id="servicetask1" name="更新表单" activiti:expression="${callBackExpression.updateStatus(execution,&quot;BPM_FORM_EXPLANE&quot;,&quot;3&quot;)}"></serviceTask>
+    <serviceTask id="servicetask1" name="更新表单" activiti:expression="${webServiceExpression.updateStatus(execution,urlRoot,&quot;finish&quot;)}"></serviceTask>
     <sequenceFlow id="flow9" sourceRef="servicetask1" targetRef="endevent1"></sequenceFlow>
     <userTask id="usertask1" name="更新表单测试" activiti:assignee="${applyUserId}"></userTask>
     <sequenceFlow id="flow10" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>

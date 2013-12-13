@@ -128,5 +128,10 @@
 			<version>1.2.0 </version>
 		</dependency>
 	
+    <!-- Logging, using Log4j as SLF4J implementation -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
   </dependencies>
 </project>
