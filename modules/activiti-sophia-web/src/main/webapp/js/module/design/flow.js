@@ -7,11 +7,10 @@ $(function () {
    monitor = $("#property-monitor"),
    model = {dataNode:[]},
         nodeCount = 0;
+    
+    $.link(true,"body", model);
+
     jsPlumbModule.init();
-
-
-
-    //jsPlumb.draggable(jsPlumb.getSelector("#node_0"))
 
     control.dialog({
         title: "工具栏",
@@ -19,8 +18,11 @@ $(function () {
         width: 110,
         minWidth: 80,
         height: 450,
-        position: [10, 50]
-       
+        position: {
+        	my: "left center",
+      	  at: "left center",
+      	  of: document
+        }
     });
 
     property.dialog({
@@ -29,16 +31,28 @@ $(function () {
         height:500,
         dialogClass: "property-dialog",
         title:"属性设置",
-        position: [$(window).width() - 366, 100]
-
+        position:{
+             my: "right center",
+        	 at: "right bottom",
+        	 of: document
+        }
     });
 
+    $("#pallate").click(function(){
+    	property.dialog("open");
+    	control.dialog("open");
+    });
+    
+    $("#save").click(function(){
+    	console.log(model);
+    });
+    
     $("li.menu-item", control).bind({
         mouseenter: function () {
-            $(this).addClass("hover")
+            $(this).addClass("hover");
         },
         mouseleave: function () {
-            $(this).removeClass("hover")
+            $(this).removeClass("hover");
         }
     });
 
@@ -50,46 +64,33 @@ $(function () {
             top: 2
         },
         helper: "clone",
-        revert: "invalid",
-        start: function () {
-    
-        }
-
+        revert: "invalid"
     });
 
     content.droppable({
         greedy: !0,
         tolerance: "pointer",
         accept: ".menu-item",
-        activate: function (b, c) {
-           
-        },
-        deactivate: function (b, c) { 
-        },
-        over: function (b, c) {
-            
-        },
-        out: function (b, c) {
-       
-        },
         drop: function (b, c) {
-
             var nodeData={
                 id: "node_" + (nodeCount++),
                 title: c.draggable.attr("title"),
-                cls: "flow-node"
-            }
+                type:c.draggable.attr("type"),
+                left:c.offset.left-25,
+                top: c.offset.top-40
+            };
+            $.observable(model.dataNode).insert(0,nodeData);
+           jsPlumb.draggable(jsPlumb.getSelector("#"+nodeData.id),{stop:function(event,ui){
+        	   $.observable(nodeData).setProperty("left", ui.position.left);
+        	   $.observable(nodeData).setProperty("top", ui.position.top);
+            }});
            
-            var node = $("<div class='flow-node' ><a class='img'/>{{if  title!=''}}" +
-                "<span data-link='title'></span>{{/if}}</div>")
-            node.link($.templates(node.html()), nodeData);
-            node.attr("type", c.draggable.attr("type")).appendTo(content).css({ left: c.offset.left, top: c.offset.top });
-            jsPlumb.draggable(jsPlumb.getSelector(node));
-         
-            jsPlumbModule.addEndpoints(node.attr("id"), ["BottomCenter", "RightMiddle", "LeftMiddle", "TopCenter"]);
+           
+      
+           jsPlumbModule.addEndpoints(nodeData.id, ["BottomCenter", "RightMiddle", "LeftMiddle", "TopCenter"]);
    
-            $.templates("#baseTemplate").link("#node-property", nodeData);
-            model.dataNode.push(nodeData);
+            //$.templates("#propertyNode").link("#userview-property", nodeData);
+           
         }
     });
 
@@ -99,20 +100,20 @@ $(function () {
         e.preventDefault();
         var submenu = $(this).siblings('ul');
         var li = $(this).parents('li');
-        var submenus = li.siblings('li.submenu').find("ul");
-        var submenus_parents = li.siblings('li.submenu');
         if (li.hasClass('open')) {
             submenu.slideDown();
             li.removeClass('open');
         } else {
-          //  submenus_parents.removeClass('open');
-            // submenus.slideUp();
             li.addClass('open');
            submenu.slideDown();
          
         }
     });
-
+    
+    $("#main-content").on("click",".flow-node",function(){
+    	$.templates("#propertyNode").link("#userview-property", $.view(this).data);
+    	$(this).addClass("selected").siblings(".flow-node").removeClass("selected");
+    });
 
 
 });

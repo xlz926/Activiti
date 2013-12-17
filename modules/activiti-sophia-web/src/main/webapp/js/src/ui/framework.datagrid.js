@@ -25,7 +25,7 @@
               });
               
               
-              this._wrapGrid()
+              this._wrapGrid();
 
               this._setSize();
 
@@ -65,7 +65,7 @@
         	  var width = $(this).attr("width") || $(this).width();
         	  $(this).removeAttr("width");
         	  $(this).wrapInner($("<div class='datagrid-cell'/>").width(width));
-          })
+          });
          table.find("thead").appendTo(grid.find(".datagrid-view2 .datagrid-header-inner table"));
           table.appendTo(grid.find(".datagrid-view2 .datagrid-body")).removeClass("table") ; 
           
@@ -193,15 +193,21 @@
                 grid =this.element,
                 wrap = $('.datagrid-wrap', grid),
                 opts =this.options,
+                _search={},
+                _page ={},
                 model =$.view(this.element).data;
             
             if (!this.options.url) {
             	return;
             }
+            if(model[this.options.path].search){
+            	_search =model[this.options.path].search;
+            }
             
             if(page){
-            	$.extend(param,{params:stell.util.serialize({start:(page.index-1)*page.size,size:page.size })});
+            	_page = {start:(page.index-1)*page.size,size:page.size }; 
             }
+            $.extend(param,{params:stell.util.serialize($.extend(_search,_page))});
            
 
            $('<div class="datagrid-mask"></div>').css({

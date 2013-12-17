@@ -32,12 +32,12 @@
 				<div class="cnt_b">
 					<div class="formRow">
 						<div class="input-prepend">
-							<span class="add-on"><i class="icon-user"></i></span><input type="text" value="kermit" placeholder="Username" name="username" id="username">
+							<span class="add-on"><i class="icon-user"></i></span><input type="text" value="admin" placeholder="Username" name="username" id="username">
 						</div>
 					</div>
 					<div class="formRow">
 						<div class="input-prepend">
-							<span class="add-on"><i class="icon-lock"></i></span><input type="password" value="kermit" placeholder="Password" name="password" id="password">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" value="000000" placeholder="Password" name="password" id="password">
 						</div>
 					</div>
 					<div class="formRow clearfix">

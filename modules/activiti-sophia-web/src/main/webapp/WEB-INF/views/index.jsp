@@ -17,12 +17,19 @@
         
 </head>
 <body>
+<input type="hidden" id="username" value="${username}"> 
 <div id="maincontainer" class="clearfix">
 <header>
 	<div class="navbar navbar-fixed-top">
 					<div class="navbar-inner">
 						<div class="container-fluid">
 							<a class="brand" href="dashboard.htm" ><i class="icon-home icon-white"></i> 工作流系统<span class="sml_t">2.0</span></a>
+							
+							<ul class="nav user_menu pull-right">
+								<li  >
+								<a   href="logout">注销</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -67,13 +74,14 @@
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a href="#collapseThree"  class="accordion-toggle">
-									<i class="icon-user"></i> 系统设置
+									<i class="icon-user"></i> 业务流程
 								</a>
 							</div>
-							<div class="accordion-body collapse"  >
+							<div class="accordion-body"  >
 								<div class="accordion-inner">
 									<ul class="nav nav-list">
-										<li><a href="javascript:void(0)">流程变量管理</a></li>
+										<li><a href="js/module/forms/schame" class='ajaxMenu'>方案申请流程</a></li>
+										<li><a href="js/module/flow/todoTasks" class='ajaxMenu'>待办任务</a></li>
 									</ul>
 								</div>
 							</div>

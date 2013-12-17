@@ -2,6 +2,8 @@ package org.activiti.sophia.web.utils;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -9,9 +11,15 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class WebRestUtil {
 
+	
+	 private static Logger logger = LoggerFactory.getLogger(WebRestUtil.class);
 	
 	 private static String  preUrl;
 	
@@ -31,7 +39,10 @@ public class WebRestUtil {
 	// PropertyFileUtil.get("activiti.rest.service.url")
 	 public static ClientResource getAuthenticatedClient(String method) {
 		     ClientResource client = new ClientResource(preUrl+method);
-		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "000000");
+		     HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+		    String  username =session.getAttribute("username")==null?"admin":session.getAttribute("username").toString();
+		    String  password =session.getAttribute("password")==null?"000000":session.getAttribute("password").toString();
+		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC,username, password);
 		    return client;
      }
 	 
@@ -41,6 +52,7 @@ public class WebRestUtil {
 		 JsonNode responseNode = objectMapper.createObjectNode() ;
 		  try {
 			  responseNode =objectMapper.readTree( client.get().getStream());
+			  logger.debug(method);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		} catch (ResourceException e) {
@@ -52,17 +64,19 @@ public class WebRestUtil {
 	}
 
 	public static Representation restPost(String method,Object params){
-		 
+		 logger.debug(method,params);
 		return getAuthenticatedClient(method).post(params);
 	}
 	
 	
 	public static Representation restPut(String method,Object params){
+		 logger.debug(method,params);
 		return getAuthenticatedClient(method).put(params);
 	}
 	
 	
 	public static Representation restDelete(String method){
+		 logger.debug(method);
 		return getAuthenticatedClient(method).delete();
 	}
 	

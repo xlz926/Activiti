@@ -42,8 +42,10 @@ z-index:20; position:absolute;
 color:black;
 font-family:helvetica;
 font-size:0.9em;
+border: 1px dashed #fff;
    
     }
+    
 
      #main-content .flow-node a.img {
         width:75px;
@@ -69,6 +71,12 @@ font-size:0.9em;
            height:45px;}
     #main-content .flow-node[type="parallel44"] a.img { background-image: url(img/parallel44.png);background-repeat:no-repeat;  width:45px;
            height:45px;}
+           
+           
+    #main-content .flow-node.selected{
+    border: 1px dashed #5C96BC
+    }
+
 
     #main-content .monitor {
     width:25px;
@@ -165,6 +173,8 @@ text-align:center;
 }
 
 
+
+._jsPlumb_endpoint{cursor: pointer;}
 
 
 

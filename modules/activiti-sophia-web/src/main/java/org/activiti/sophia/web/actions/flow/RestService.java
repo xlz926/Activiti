@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.activiti.sophia.web.utils.WebRestUtil;
 import org.codehaus.jackson.JsonNode;
@@ -29,7 +30,8 @@ public class RestService {
 
 	@RequestMapping(value = "RestService", method = { RequestMethod.GET })
 	@ResponseBody
-	public JsonNode getRestService(HttpServletRequest request,Model model,@RequestParam("method") String method){
+	public JsonNode getRestService(HttpServletRequest request,Model model,
+			 HttpSession session,@RequestParam("method") String method){
 		String params =request.getParameter("params");
 		if(params !=null)method=method+"?"+params;
 		return 	WebRestUtil.restGet(method);

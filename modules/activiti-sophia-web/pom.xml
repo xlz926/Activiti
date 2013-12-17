@@ -63,13 +63,11 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -78,8 +76,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
 		</dependency>
 		
 		<!-- Logging -->
@@ -94,13 +90,11 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
 		
 		   <dependency>
@@ -155,19 +149,6 @@
 	
  <build>
     <plugins>
-      <plugin>
-        <groupId>org.zeroturnaround</groupId>
-        <artifactId>jrebel-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-rebel-xml</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <!-- A simple Jetty test server at http://localhost:8080/activiti-webapp-rest can be launched with the Maven goal jetty:run 
       and stopped with jetty:stop -->
       <plugin>
@@ -182,7 +163,7 @@
             </connector>
           </connectors>
           <stopPort>8062</stopPort>
-          <stopKey>activiti-webapp-rest</stopKey>
+          <stopKey>activiti-sophia-web</stopKey>
           <!-- Redeploy every x seconds if changes are detected, 0 for no automatic redeployment -->
           <scanIntervalSeconds>0</scanIntervalSeconds>
           <!-- make sure Jetty also finds the widgetset -->

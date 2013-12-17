@@ -1,0 +1,43 @@
+<div class="main_content" >
+       <div id="jCrumbs" class="breadCrumb module">
+			    <ul>
+			        <li>
+			            <a href="#"><i class="icon-home"></i>业务流程</a>
+			        </li>
+			        <li>
+			            <a href="#">模板管理</a>
+			        </li>
+			    </ul>
+       </div>
+        <div class='container-fluid'>
+		<div class="row-fluid">
+			<div class="span12" id="todoList" data-path="tasks"
+				style="height: 460px;" url="sophia/tasks">
+				<div class='datagrid-toolbar btn-group'>
+					<a event-click="showTask" class="btn">查看处理过程</a>
+					<a event-click="showDiagram" class="btn">查看跟踪图</a>
+					<a class="btn btn-primary" event-click="complate">处理</a>
+				</div>
+			   <table class="table">
+						<thead><tr><th>序号</th><th>任务ID</th><th>申请人</th><th>业务单据编号</th><th>当前处理任务</th><th width="150">申请时间</th><th>流程定义名称</th><th width="100">审核人</th></tr> </thead>
+						<tbody> 
+						{^{for tasks.data}}
+						<tr><td>{{:#index}} <input type="checkbox" class="datagrid-cell-check"/></td><td>{{:id}}</td><td>{{:startUserName}}</td><td>{{:businessKey}}</td><td>{{:name}}</td><td>{{:~formatDate(createTime)}}</td><td>{{: procdefName }}</td><td>{{: assignee }}</td>
+						</tr>
+						{{/for}}
+						</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	<div id="diagram">
+	</div>
+	
+	<div id="formTask">
+	
+	
+	</div>
+	
+   </div>
+
+

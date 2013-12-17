@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${jsPath}/lib/extend/jquery.livequery.js"> </script>
 <script type="text/javascript" src="${jsPath}/lib/jBreadCrumb/js/jquery.jBreadCrumb.1.1.js"> </script>
 <script type="text/javascript" src="${jsPath}/lib/extend/jquery.cookie.min.js"> </script>
+<script type="text/javascript" src="${jsPath}/src/ui/viewui.date.js"> </script>
 
 
 

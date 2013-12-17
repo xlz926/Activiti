@@ -2,12 +2,12 @@ define(function(require){
 	
 	function GroupInfo(content){
 		var that =this;
-		this.tmpl = $.templates(require("pages/org/groupInfo.html")),
-		this.element  =content.jquery?content:$(content),
+		this.tmpl = $.templates(require("pages/org/groupInfo.html"));
+		this.element  =content.jquery?content:$(content);
 		this.model={role:{},
 				roles:{data:[]},
 				users:{data:[]},
-				userList:{data:[]}},
+				userList:{data:[]}};
 		this.element.link( this.tmpl,this.model);
 		this.editFormPage =this.element.find("#groupEdit");
 		this.rolesList = this.element.find("#rolesList").datagrid({

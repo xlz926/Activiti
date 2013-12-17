@@ -10,14 +10,14 @@
    
  <link href="${jsPath}/lib/jui/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     <link href="${basePath }/js/module/design/style/app.css" rel="stylesheet" media="screen">
- 
- 
    <script type="text/javascript" src="${jsPath}/lib/jquery/jquery.min.js"> </script>
    <script type="text/javascript" src="${jsPath}/lib/jui/jquery-ui.js"> </script>
-    <script type="text/javascript" src="${jsPath}/lib/angular/angular.js"> </script>
-    <script type="text/javascript" src="${jsPath}/lib/angular/bootstrap/ui-bootstrap-tpls-0.8.0-SNAPSHOT.js"> </script>
-    
-     <script type="text/javascript" src="${jsPath}/module/design/app.js"> </script>
+     <script src="${jsPath}/lib/jsview/jsviews.js"></script>
+ 
+   
+    <script src="${jsPath}/lib/jsplumb/jquery.jsPlumb-1.5.2.js"></script>
+      <script type="text/javascript"  src="${jsPath}/module/design/jsplumb.js"></script>
+     <script type="text/javascript" src="${jsPath}/module/design/flow.js"> </script>
    
 <head>
 <title>流程设计器</title>
@@ -39,6 +39,7 @@
 						<li><a href="#">剪切</a></li>
 						<li><a href="#">粘贴</a></li>
 						<li><a href="#">网格</a></li>
+						<li><a href="#" id="pallate">属性</a></li>
 						<li><a href="#">帮助</a></li>
 					</ul>
 				</div>
@@ -46,8 +47,7 @@
 		</div>
 	</div>
 
-		<div id="main-content">
-			
+		<div id="main-content" data-link="{for dataNode tmpl='#flowNode'}">
 		</div>
 
 		<div  id="control-dialog"   >
@@ -73,30 +73,34 @@
 
 		<div   id="property-dialog"  >
 			<div id="userview-property">
-                <ul >
-				<li class="active submenu"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
+           
+			</div>
+		</div>
 
+      <script  type="text/x-jsrender" id="flowNode">
+      <div class='flow-node' id="{{:id}}" type="{{:type}}" data-link="css-top{:top}css-left{:left}"  ><a class='img'></a>
+               {{if type!='start' &&  type!='end'  }}
+                     <span data-link="title"></span>
+               {{/if}}
+       </div>
+      </script>
+      
+        <script  type="text/x-jsrender" id="propertyNode">
+          <ul>
+				<li class="active submenu"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
                     	<ul  class="nav nav-list">
-						<li><span>编号</span><input class="input-small" type="text" /></li>
-						<li><span>名称</span><input class="input-small" type="text" /></li>
+						<li><span>编号</span><input class="input-small" type="text" data-link="id" /></li>
+						<li><span>名称</span><input class="input-small" type="text" data-link="title" /></li>
 					</ul>
 				</li>
 				<li class="submenu open">
 					<a href="#"><i class="icon icon-th-list"></i> <span>扩展属性</span> <span class="label">3</span></a>
 					<ul  class="nav nav-list">
-						<li><span>审核人</span><input class="input-small" type="text" /></li>
-						<li><span>邮件通知</span><input class="input-small"  type="text" /></li>
-						<li><span>过期时间</span><input class="input-small" type="text" /></li>
-                        <li><span>提醒频率</span><input class="input-small" type="text" /></li>
+						<li><span>审核人</span><input class="input-small" type="text" data-link="assage"  /></li>
 					</ul>
 				</li>
-				
 			</ul>
-
-			</div>
-		</div>
-
-
+       </script>
 
 </body>
 </html>
