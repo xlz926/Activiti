@@ -1,0 +1,13 @@
+       
+       
+        <div   id="templateList"  url="repository/models" data-path="models" style="height:300px; ">
+	                               <table class="table">
+											<thead><tr><th width="40px">序号</th><th width="60">模板编号</th><th width="160">模板名称</th><th width="260">类型</th><th>版本号</th>  </tr></thead>
+											<tbody> 
+											{^{for  models.data}}
+											<tr><td>{{:#index+1}}</td><td>{{:key}}</td><td>{{:name}}</td><td>{{:category}}</td><td>{{: version }}</td>
+											</tr>
+											{^{/for}}
+											</tbody>
+								</table>
+                       </div>

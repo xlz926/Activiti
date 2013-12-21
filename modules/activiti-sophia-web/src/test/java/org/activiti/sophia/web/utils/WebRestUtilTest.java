@@ -1,15 +1,15 @@
 package org.activiti.sophia.web.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 import org.junit.Test;
 import org.restlet.data.ChallengeScheme;
+import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
@@ -153,8 +153,35 @@ public class WebRestUtilTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	}
 	
+	@Test
+	public void createModel() throws JsonProcessingException, ResourceException, IOException{
+		ObjectNode requestNode = new ObjectMapper().createObjectNode();
+		requestNode.put("name", "ddd1");
+		requestNode.put("key", "ddd2");
+		requestNode.put("category", "ddd3");
+		requestNode.put("version", 1);
+		requestNode.put("metaInfo", "ddd4");
+		String content ="dddd";
+		 Representation uploadRepresentation = new HttpMultipartRepresentation("test444.txt",
+				 new   ByteArrayInputStream(content.getBytes("UTF-8")));
+		 WebRestUtil.restPost("repository/models", requestNode).getStream();
+	}
+	
+	@Test
+	public void updateModelResource() throws JsonProcessingException, ResourceException, IOException{
+		String content= "ttt";
+		 Representation uploadRepresentation = new HttpMultipartRepresentation("test444.txt",
+				 new   ByteArrayInputStream(content.getBytes("UTF-8")));
+		 WebRestUtil.restPut("repository/models/2704/source", uploadRepresentation).getStream();
+	}
+	
+	@Test
+	public void createDeplayment() throws JsonProcessingException, ResourceException, IOException{
+		String content= "ttt";
+		 Representation uploadRepresentation = new HttpMultipartRepresentation("test444.txt",
+				 new   ByteArrayInputStream(content.getBytes("UTF-8")));
+		 WebRestUtil.restPost("repository/deployments", uploadRepresentation).getStream();
 	}
 }

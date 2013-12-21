@@ -54,16 +54,16 @@ border: 1px dashed #fff;
         display:block;
       }
 
- #main-content .flow-node[type="usertask"]  a.img{background-image: url(img/usertask_.png) ;background-repeat:no-repeat  }
+ #main-content .flow-node[type="userTask"]  a.img{background-image: url(img/usertask_.png) ;background-repeat:no-repeat  }
  #main-content .flow-node[type="email"] a.img { background-image: url(img/email_.png) ;background-repeat:no-repeat }
   #main-content .flow-node[type="ticon2"] a.img { background-image:  url(img/ticon2_.png) ;background-repeat:no-repeat }
    #main-content .flow-node[type="web"] a.img { background-image: url(img/web_.png) ;background-repeat:no-repeat }
     #main-content .flow-node[type="sql"] a.img { background-image:  url(img/sql_.png) ;background-repeat:no-repeat }
     #main-content .flow-node[type="subTask"] a.img { background-image:  url(img/subTask.png) ;background-repeat:no-repeat }
     
-   #main-content .flow-node[type="start"] a.img { background-image:  url(img/start_.png) ;background-repeat:no-repeat; width:50px;
+   #main-content .flow-node[type="startEvent"] a.img { background-image:  url(img/start_.png) ;background-repeat:no-repeat; width:50px;
            height:50px; }
-    #main-content .flow-node[type="end"] a.img { background-image:url(img/end_.png) ;background-repeat:no-repeat ;  width:50px;
+    #main-content .flow-node[type="endEvent"] a.img { background-image:url(img/end_.png) ;background-repeat:no-repeat ;  width:50px;
            height:50px;}
  #main-content .flow-node[type="ticon7"] a.img { background-image: url(img/ticon7_.png);background-repeat:no-repeat;  width:45px;
            height:45px;}
@@ -177,4 +177,43 @@ text-align:center;
 ._jsPlumb_endpoint{cursor: pointer;}
 
 
+.ep{
+	position:absolute;
+	background-color:orange;
+	cursor:pointer;
+	box-shadow: 0px 0px 2px black;
+	-webkit-transition:-webkit-box-shadow 0.25s ease-in;
+	-moz-transition:-moz-box-shadow 0.25s ease-in;
+	transition:box-shadow 0.25s ease-in;
+}
 
+.ep:hover {
+	box-shadow: 0px 0px 6px black;
+	display: block;
+}
+.ep.right{
+	bottom: 37%;
+	right: -1em;
+	width:1em;
+	height:1em;
+}
+.ep.top{
+	top: -1em;
+	right: 50%;
+	width:1em;
+	height:1em;
+}
+.ep.bottom{
+	bottom: -1em;
+	right: 50%;
+	width:1em;
+	height:1em;
+}
+.ep.left{
+	bottom: 37%;
+	left: -1em;
+	width:1em;
+	height:1em;
+}
+
+flow-node:hover  .ep{display: block;}

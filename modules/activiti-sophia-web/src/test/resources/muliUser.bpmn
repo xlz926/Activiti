@@ -3,6 +3,7 @@
   <process id="poc_leave" name="会签测试流程" isExecutable="true">
     <startEvent id="start" name="Start" activiti:initiator="applyUserId"></startEvent>
     <userTask id="usertask1" name="填写草稿" activiti:assignee="${applyUserId}">
+    <documentation></documentation>
       <extensionElements>
         <activiti:taskListener event="create" class="org.activiti.sophia.workflow.Listener.DraftListener"></activiti:taskListener>
       </extensionElements>

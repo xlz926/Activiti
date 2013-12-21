@@ -39,9 +39,14 @@ public class WebRestUtil {
 	// PropertyFileUtil.get("activiti.rest.service.url")
 	 public static ClientResource getAuthenticatedClient(String method) {
 		     ClientResource client = new ClientResource(preUrl+method);
-		     HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
-		    String  username =session.getAttribute("username")==null?"admin":session.getAttribute("username").toString();
-		    String  password =session.getAttribute("password")==null?"000000":session.getAttribute("password").toString();
+		     String  username="admin";
+		     String  password="000000";
+		     if(RequestContextHolder.getRequestAttributes()!=null){
+		    	  HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+				  username =session.getAttribute("username")==null?"admin":session.getAttribute("username").toString();
+				   password =session.getAttribute("password")==null?"000000":session.getAttribute("password").toString();
+		     }
+		   
 		    client.setChallengeResponse(ChallengeScheme.HTTP_BASIC,username, password);
 		    return client;
      }

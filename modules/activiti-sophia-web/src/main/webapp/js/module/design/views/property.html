@@ -1,0 +1,55 @@
+     
+     
+      <div id="flowNode">
+      <div class='flow-node' id="{{:attr.id}}" type="{{:attr._type}}" style="left:{{:attr._left}}px;top:{{:attr._top}}px" ><a class='img'></a>
+               {{if attr._type!='startEvent' &&  attr._type!='endEvent'  }}
+                     <span data-link="attr.name"> </span>
+               {{/if}}
+       </div>
+       </div>
+       
+       
+        <div   id="propertyNode">
+          <ul>
+				<li class="active open"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
+                    	<ul  class="nav nav-list">
+						<li><span>编号</span><input class="input-small" type="text" data-link="attr.id" /></li>
+						<li><span>名称</span><input class="input-small" type="text" data-link="attr.name" /></li>
+                         {{if userTask}}
+	                      <li><span>审核人</span><input class="input-small" type="text" data-link="attr.activiti_assignee"  /></li>
+                         {{/if}}
+					</ul>
+				</li>
+			</ul>
+       </div >
+       
+        
+        <div  id="propertyProcess">
+          <ul>
+				<li class="submenu open"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
+                    	<ul  class="nav nav-list">
+						<li><span>流程编号</span><input class="input-small" type="text" data-link="attr.key" /></li>
+						<li><span>流程名称</span><input class="input-small" type="text" data-link="attr.name" /></li>
+					</ul>
+				</li>
+               <li class="submenu"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
+                    	<ul  class="nav nav-list">
+						<li><span>流程类别</span><input class="input-small" type="text" data-link="attr.category" /></li>
+						<li><span>版本号</span><input class="input-small" type="text" data-link="attr.version" /></li>
+						<li><span>描述</span><input class="input-small" type="text" data-link="attr.metaInfo" /></li>
+					</ul>
+				</li>
+			</ul>
+       </div>
+       
+      <div id="sequenceFlow">
+          <ul>
+				<li class="active open"><a href="#"><i class="icon icon-home"></i> <span>基本属性</span><span class="label">2</span></a>
+                    	<ul  class="nav nav-list">
+						<li><span>编号</span><input class="input-small" type="text" data-link="attr.id" /></li>
+						<li><span>名称</span><input class="input-small" type="text" data-link="attr.name" /></li>
+                        <li><span>条件</span><input class="input-small" type="text" data-link="attr._value" /></li>
+					</ul>
+				</li>
+			</ul>
+       </div>

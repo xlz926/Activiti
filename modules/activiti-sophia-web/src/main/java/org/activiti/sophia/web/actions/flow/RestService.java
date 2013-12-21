@@ -1,18 +1,23 @@
 package org.activiti.sophia.web.actions.flow;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.sophia.web.utils.HttpMultipartRepresentation;
 import org.activiti.sophia.web.utils.WebRestUtil;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +30,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/flow/restService/*")
 public class RestService {
+	
+
+	 private static Logger logger = LoggerFactory.getLogger(RestService.class);
 
 	  protected ObjectMapper objectMapper = new ObjectMapper();
 
@@ -136,7 +144,21 @@ public class RestService {
 		return result;
 	}
 	
-	
+	@RequestMapping(value = "saveResource", method = {  RequestMethod.POST })
+	@ResponseBody
+	public JsonNode saveResource(@RequestParam("method") String method,@RequestParam("params") String params,@RequestParam(value = "name", defaultValue = "model.txt") String name){
+		  Representation uploadRepresentation;
+		try {
+			uploadRepresentation = new HttpMultipartRepresentation(name,
+					  new ByteArrayInputStream(params.getBytes("UTF-8")));
+			return objectMapper.readTree(WebRestUtil.restPut(method, uploadRepresentation).getStream());
+		} catch (UnsupportedEncodingException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		return null;
+	}
 	
 	
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="20098950D96546629B0856F270F85133">
+<process id="test444" name="部署测试">
+	<endEvent id="node_2" name="结束">
+		<documentation />
+	</endEvent>
+	<userTask id="node_1" name="主管审核" activiti:assignee="admin">
+		<documentation />
+	</userTask>
+	<startEvent id="node_0" name="开始" activiti:initiator="applyUserId">
+		<documentation />
+	</startEvent>
+	<sequenceFlow sourceRef="node_1" targetRef="node_2" id="con_36" />
+	<sequenceFlow sourceRef="node_0" targetRef="node_1" id="con_44" />
+</process>
+</definitions>

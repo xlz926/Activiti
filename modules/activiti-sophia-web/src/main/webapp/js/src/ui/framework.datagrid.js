@@ -12,7 +12,7 @@
             loadMsg: 'Processing, please wait ...',
             border:true,
             singleSelect:true,
-            pagination:false
+            pagination:true
       },
       _create:function(){
               var elem=this.element;
@@ -37,7 +37,7 @@
          var grid = this.element,
              that  = this,
              table = this.element.find("table"),
-             opts =this.element;
+             opts =this.options;
              grid.addClass("datagrid").append(
 				'<div class="datagrid-wrap panel-body">' +
 					'<div class="datagrid-view">' +
