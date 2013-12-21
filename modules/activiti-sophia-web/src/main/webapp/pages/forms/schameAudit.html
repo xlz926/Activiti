@@ -1,0 +1,50 @@
+          <div class='container-fluid'>
+          <form>
+          <div class="row-fluid formSep" title="用户申请">
+                <ul>
+                <li class="span12"> <label class="span3" >选聘方案名称</label> 
+                <label class="showLabel span9"  for="#schameName" >{{:schameName.current}}</label>
+                 <input class="span9 hide" name="schameName"  id="schameName"  type="text" />
+                 <span class="label label-info tip">{{:schameName.detail.length}}</span>
+                    <div class="popover fade left in">
+				        <div class="arrow"></div>
+				        <h3 class="popover-title">选聘方案名称</h3>
+				        <div class="popover-content">
+				           <ul class="nav">
+				           {{for schameName.detail}}
+				           {{if #index==0}}
+				                                      初始化数据<label class="label label-success">{{:value}}</label>
+				           {{else}}
+				             <li>
+				             {{:assignee}}在 {{:activityName}}修改了选聘方案名称为<label class="label label-success">{{:value}}</label>
+				           </li>
+				           {{/if}}
+				           {{/for}}
+				           </ul>
+				        </div>
+				      </div>
+                 </li>
+                <li class="span12"> <label class="span3 ">选聘师资类别</label>
+                 <input name="schameType" id="schameType" class="span9 hide" type="text"  />
+                  <label class="showLabel span9"   for="#schameType" > {{:schameType.current}}</label>
+                     <span class="label label-info tip">{{:schameType.detail.length}}</span>
+                    <div class="popover fade left in">
+				        <div class="arrow"></div>
+				        <h3 class="popover-title">选聘师资类别</h3>
+				        <div class="popover-content">
+				           <ul class="nav">
+				           {{for schameType.detail}}
+				           <li>
+				             {{:assignee}}在 {{:activityName}}修改了选聘方案名称为<label class="label label-success">{{:value}}</label>
+				           </li>
+				           {{/for}}
+				           </ul>
+				        </div>
+				      </div>
+                  
+                  </li>
+                </ul>
+              </div>
+		     </form>
+          </div>
+ 
